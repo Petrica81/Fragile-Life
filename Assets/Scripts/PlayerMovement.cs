@@ -1,15 +1,28 @@
 using UnityEngine;
 
-public class PlayerMovement:MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    private void FixedUpdate()
-    {
-        float speed = 5f;
+    public float speed = 5f;
+    //private Rigidbody rb;
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            //transform.position += 
-            // addForce?
-        }
+    private void Start()
+    {
+       
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.W))
+            transform.position += transform.forward * speed * Time.deltaTime;
+        
+        if (Input.GetKey(KeyCode.S))
+            transform.position -= transform.forward * speed * Time.deltaTime;
+        
+        if (Input.GetKey(KeyCode.A))
+            transform.position -= transform.right * speed * Time.deltaTime;
+        
+        if (Input.GetKey(KeyCode.D))
+            transform.position += transform.right * speed * Time.deltaTime;
+        
     }
 }
