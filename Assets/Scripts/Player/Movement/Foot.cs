@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Foot : MonoBehaviour
 {
-    [SerializeField] private Transform _footPlacementTarget;
+    public Transform _footPlacementTarget;
     [SerializeField] private Transform _bodyTransform;
     [SerializeField] private float _stepSize;
     [SerializeField] private float _stepSpeed;

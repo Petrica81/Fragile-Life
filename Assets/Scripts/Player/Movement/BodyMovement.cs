@@ -23,8 +23,6 @@ public class BodyMovement : MonoBehaviour
     private int _castPosition = -1;
     private RaycastHit[] _hits;
 
-    public bool grounded = false;
-
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -44,9 +42,6 @@ public class BodyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody.transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime, 0);
-
-        //if(!grounded) 
-        //    ApplyGravity();
     }
 
     private void OrientBody()
@@ -80,7 +75,7 @@ public class BodyMovement : MonoBehaviour
             _castHeightAboveBody + _groundCastDepth,
             _groundLayer
             );
-
+        Debug.DrawRay(transform.position + castOffset, -transform.up * (_castHeightAboveBody + _groundCastDepth), Color.magenta, 0.5f);
         return hit;
     }
 
