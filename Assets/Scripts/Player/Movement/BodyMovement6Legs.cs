@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BodyMovement6Legs : MonoBehaviour
 {
@@ -19,10 +20,14 @@ public class BodyMovement6Legs : MonoBehaviour
     private Vector3 _averagePosition;
     private Vector2 _input;
     private bool _grounded = true;
+    private float _baseAngle;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        Vector3 directionToLeg = (_legs[4].position - _legs[0].position).normalized;
+        _baseAngle = Vector3.SignedAngle(transform.right, directionToLeg, Vector3.up);
+
     }
     private void Update()
     {
@@ -42,7 +47,16 @@ public class BodyMovement6Legs : MonoBehaviour
         Vector3 frontDirection = transform.position + transform.forward * _input.y;
         frontDirection.y = _averagePosition.y;
         transform.position = Vector3.MoveTowards(transform.position, frontDirection, _forwardSpeed * Time.fixedDeltaTime);
-        transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime, 0);
+
+        float angle = 0;
+        if (_legs[4].GetComponent<Foot>()._currentPhase == StepPhases.RESTING &&
+            _legs[0].GetComponent<Foot>()._currentPhase == StepPhases.RESTING)
+        {
+            Vector3 directionToLeg = (_legs[4].position - _legs[0].position).normalized;
+            angle = Vector3.SignedAngle(transform.right, directionToLeg, Vector3.up) - _baseAngle;
+        }
+        transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime,0);
+        transform.Rotate(angle * Time.fixedDeltaTime, 0, 0);
     }
     private void ApplyGravity()
     {

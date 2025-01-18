@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
-
+public enum StepPhases
+{
+    RESTING,
+    MOVING_TO_TARGET,
+    MOVING_TO_LIFT
+}
 public class Foot : MonoBehaviour
 {
     public Transform _footPlacementTarget;
@@ -13,13 +18,6 @@ public class Foot : MonoBehaviour
 
     private PlacementRaycast _placementRaycast;
     private Vector3 _targetPosition = Vector3.zero;
-
-    public enum StepPhases
-    {
-        RESTING,
-        MOVING_TO_TARGET,
-        MOVING_TO_LIFT
-    }
 
     public StepPhases _currentPhase = StepPhases.MOVING_TO_TARGET;
     public UnityEvent<bool> OnPlantedChange;
