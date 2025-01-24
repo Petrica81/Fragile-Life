@@ -56,7 +56,6 @@ public class BodyMovement6Legs : MonoBehaviour
             angle = Vector3.SignedAngle(transform.right, directionToLeg, Vector3.up) - _baseAngle;
         }
         transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime,0);
-        transform.Rotate(angle * Time.fixedDeltaTime, 0, 0);
     }
     private void ApplyGravity()
     {
