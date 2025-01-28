@@ -25,43 +25,9 @@ public class PlacementRaycast : MonoBehaviour
             _hitPos = hit.point;
         }
         else
-        {
-            Physics.SphereCast(
-                transform.position + (transform.up * _castHeight),
-                1f,
-                -transform.up+transform.forward,
-                out hit,
-                _castDistance + _castHeight,
-                _walkableLayer
-                );
-            Debug.DrawRay(transform.position + (transform.up * _castHeight), (-transform.up + transform.forward )* (_castDistance + _castHeight), Color.green, 0.5f);
-
-            if (hit.collider != null) 
-            {
-                _hitPos = hit.point;
-            }
-            else
-            {
-                Physics.SphereCast(
-                    transform.position + (transform.up * _castHeight),
-                    1f,
-                    -transform.up - transform.forward,
-                    out hit,
-                    _castDistance + _castHeight,
-                    _walkableLayer
-                    );
-                Debug.DrawRay(transform.position + (transform.up * _castHeight), (-transform.up - transform.forward) * (_castDistance + _castHeight), Color.blue, 0.5f);
-
-
-                if (hit.collider != null)
-                {
-                    _hitPos = hit.point;
-                }
-                else
-                    _hitPos = transform.position;// + (transform.up * _castHeight);
-            }
+        { 
+            _hitPos = transform.position;// + (transform.up * _castHeight / 2);
         }
-
         return _hitPos;
     }
 }

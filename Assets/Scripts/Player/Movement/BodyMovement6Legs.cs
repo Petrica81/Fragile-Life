@@ -64,7 +64,6 @@ public class BodyMovement6Legs : MonoBehaviour
     private void AverageValues()
     {
         _averagePosition = Vector3.zero;
-        _averageNormal = Vector3.zero;
         int numberOfLegsOnGround = 0;
 
         for (int i = 0; i < 6; i++)
