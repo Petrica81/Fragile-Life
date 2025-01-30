@@ -75,7 +75,7 @@ public class BodyMovement : MonoBehaviour
             _castHeightAboveBody + _groundCastDepth,
             _groundLayer
             );
-        Debug.DrawRay(transform.position + castOffset, -transform.up * (_castHeightAboveBody + _groundCastDepth), Color.magenta, 0.5f);
+        //Debug.DrawRay(transform.position + castOffset, -transform.up * (_castHeightAboveBody + _groundCastDepth), Color.magenta, 0.5f);
         return hit;
     }
 

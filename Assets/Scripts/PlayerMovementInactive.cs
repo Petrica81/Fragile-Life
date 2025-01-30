@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementInactive : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 5f;

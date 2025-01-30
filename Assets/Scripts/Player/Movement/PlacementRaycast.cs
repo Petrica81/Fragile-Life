@@ -19,7 +19,7 @@ public class PlacementRaycast : MonoBehaviour
             _castDistance + _castHeight,
             _walkableLayer
             );
-        Debug.DrawRay(transform.position + (transform.up * _castHeight), -transform.up * (_castDistance + _castHeight), Color.yellow, 0.5f);
+        //Debug.DrawRay(transform.position + (transform.up * _castHeight), -transform.up * (_castDistance + _castHeight), Color.yellow, 0.5f);
         if (hit.collider != null)
         {
             _hitPos = hit.point;
