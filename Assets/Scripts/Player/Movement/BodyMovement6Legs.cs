@@ -15,6 +15,12 @@ public class BodyMovement6Legs : MonoBehaviour
     [SerializeField][Tooltip("Suprafata pe care se poate deplasa.")] 
     private LayerMask _walkableLayer;
 
+    [SerializeField] private float _groundCastDepth;
+    [SerializeField] private float _castHeightAboveBody;
+    [SerializeField] private float _castPositionsAdvance;
+    [SerializeField] private float _desiredGroundClearance;
+    [SerializeField] private float _castSphereRadius;
+
     private Rigidbody _rigidbody;
     private Vector3 _averageNormal;
     private Vector3 _averagePosition;
@@ -26,7 +32,7 @@ public class BodyMovement6Legs : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         Vector3 directionToLeg = (_legs[4].position - _legs[0].position).normalized;
-        _baseAngle = Vector3.SignedAngle(transform.right, directionToLeg, Vector3.up);
+        _baseAngle = Vector3.SignedAngle(transform.right, directionToLeg, transform.up);
 
     }
     private void Update()
@@ -37,6 +43,7 @@ public class BodyMovement6Legs : MonoBehaviour
         _input = new Vector2(horizontal, vertical);
 
         AverageValues();
+        OrientBody();
 
         if (!_grounded)
             ApplyGravity();
@@ -53,10 +60,9 @@ public class BodyMovement6Legs : MonoBehaviour
             _legs[0].GetComponent<Foot>()._currentPhase == StepPhases.RESTING)
         {
             Vector3 directionToLeg = (_legs[4].position - _legs[0].position).normalized;
-            angle = Vector3.SignedAngle(transform.right, directionToLeg, Vector3.up) - _baseAngle;
+            angle = Vector3.SignedAngle(transform.right, directionToLeg, transform.up) - _baseAngle;
         }
         transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime,0);
-        transform.Rotate(angle * Time.fixedDeltaTime, 0, 0);
     }
     private void ApplyGravity()
     {
@@ -65,7 +71,6 @@ public class BodyMovement6Legs : MonoBehaviour
     private void AverageValues()
     {
         _averagePosition = Vector3.zero;
-        _averageNormal = Vector3.zero;
         int numberOfLegsOnGround = 0;
 
         for (int i = 0; i < 6; i++)
@@ -94,4 +99,41 @@ public class BodyMovement6Legs : MonoBehaviour
         else
             _grounded = true;
     }
+
+    private void OrientBody()
+    {
+        RaycastHit hit = GetOrientationUp();
+
+        if (hit.collider)
+        {
+            var _forwardPoint = hit.point + (hit.normal * _desiredGroundClearance);
+            transform.position = Vector3.MoveTowards(transform.position, _forwardPoint, _forwardSpeed);
+            Quaternion desiredRotation = Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal), hit.normal);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, _turnSpeed * Time.deltaTime);
+        }
+        else
+        {
+            ApplyGravity();
+        }
+    }
+
+    private RaycastHit GetOrientationUp()
+    {
+        Vector3 castOffset = (transform.up * _castHeightAboveBody) + transform.forward * _input.y * _forwardSpeed * Time.deltaTime;
+
+        RaycastHit hit;
+        Physics.SphereCast(
+            transform.position + castOffset,
+            _castSphereRadius,
+            -transform.up,
+            out hit,
+            _castHeightAboveBody + _groundCastDepth,
+            _walkableLayer
+            );
+
+        return hit;
+    }
 }
+
+

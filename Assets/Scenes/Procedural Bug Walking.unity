@@ -1029,6 +1029,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1160728150308220291, guid: b6d7003681c02384eb7f4ec6f077ab80, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1380701952931284067, guid: b6d7003681c02384eb7f4ec6f077ab80, type: 3}
       propertyPath: m_Data.m_Mid
       value: 
@@ -1087,7 +1091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2639660801152350386, guid: b6d7003681c02384eb7f4ec6f077ab80, type: 3}
       propertyPath: _minDistanceTolerance
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2858633411933973680, guid: b6d7003681c02384eb7f4ec6f077ab80, type: 3}
       propertyPath: m_Data.m_Mid
@@ -1339,7 +1343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8641957760924397996, guid: b6d7003681c02384eb7f4ec6f077ab80, type: 3}
       propertyPath: _minDistanceTolerance
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5244294474730483423, guid: b6d7003681c02384eb7f4ec6f077ab80, type: 3}
@@ -1453,6 +1457,11 @@ MonoBehaviour:
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 1
+  _groundCastDepth: 1.71
+  _castHeightAboveBody: 0.57
+  _castPositionsAdvance: 0.61
+  _desiredGroundClearance: 0.74
+  _castSphereRadius: 0.58
 --- !u!1 &644876311
 GameObject:
   m_ObjectHideFlags: 0
