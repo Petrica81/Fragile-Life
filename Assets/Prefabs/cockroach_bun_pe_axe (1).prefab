@@ -769,7 +769,7 @@ MonoBehaviour:
   _stepSize: 1
   _stepSpeed: 15
   _stepHeight: 0.3
-  _minDistanceTolerance: 0.5
+  _minDistanceTolerance: 0.3
   _opposingFoot: {fileID: 8972714977017155314}
   _currentPhase: 1
   OnPlantedChange:
@@ -1940,7 +1940,7 @@ Transform:
   m_GameObject: {fileID: 7137174065525667145}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 2, z: -4}
+  m_LocalPosition: {x: 0, y: 6, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2472,7 +2472,7 @@ MonoBehaviour:
   _stepSize: 1
   _stepSpeed: 15
   _stepHeight: 0.3
-  _minDistanceTolerance: 0.5
+  _minDistanceTolerance: 0.3
   _opposingFoot: {fileID: 7025146305936481212}
   _currentPhase: 1
   OnPlantedChange:
@@ -2840,7 +2840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 590dd252d12fcda45ba8c516f16efea2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 590dd252d12fcda45ba8c516f16efea2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3792,7 +3792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forwardSpeed: 4
   _turnSpeed: 100
-  _heightOffset: 0.85
+  _heightOffset: 2.78
   _legs:
   - {fileID: 8280633323936696512}
   - {fileID: 3363742573500612220}
