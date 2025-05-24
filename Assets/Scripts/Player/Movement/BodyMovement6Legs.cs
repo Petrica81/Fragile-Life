@@ -52,7 +52,7 @@ public class BodyMovement6Legs : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 frontDirection = transform.position + transform.forward * _input.y;
-        frontDirection.y = _averagePosition.y;
+       
         transform.position = Vector3.MoveTowards(transform.position, frontDirection, _forwardSpeed * Time.fixedDeltaTime);
 
         float angle = 0;
