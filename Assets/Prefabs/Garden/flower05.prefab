@@ -3895,40 +3895,10 @@ LODGroup:
     - renderer: {fileID: 4969346775945096978}
   - screenRelativeHeight: 0.2005334
     fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2217726136347777573}
-    - renderer: {fileID: 7707421316104319631}
-    - renderer: {fileID: 2905251831608591521}
-    - renderer: {fileID: 6867226909934161545}
-    - renderer: {fileID: 2787892087643071932}
-    - renderer: {fileID: 3024941945322402375}
-    - renderer: {fileID: 7381231189643414890}
-    - renderer: {fileID: 3467951471057695817}
-    - renderer: {fileID: 6235634467037980022}
-    - renderer: {fileID: 1781106764313115435}
+    renderers: []
   - screenRelativeHeight: 0.16376616
     fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 3781585949881822574}
-    - renderer: {fileID: 84278827768891186}
-    - renderer: {fileID: 8484378327443964538}
-    - renderer: {fileID: 8420880142434443101}
-    - renderer: {fileID: 2933123300509337567}
-    - renderer: {fileID: 7546604738004358417}
-    - renderer: {fileID: 6564388489986088471}
-    - renderer: {fileID: 2024190345381501448}
-    - renderer: {fileID: 5797184162216142950}
-    - renderer: {fileID: 7836485587810226876}
-    - renderer: {fileID: 1924754570141887869}
-    - renderer: {fileID: 8206489485013427276}
-    - renderer: {fileID: 3485457019525017969}
-    - renderer: {fileID: 7440263131451113633}
-    - renderer: {fileID: 8743403413215697865}
-    - renderer: {fileID: 8791913774727993147}
-    - renderer: {fileID: 3180703792344272684}
-    - renderer: {fileID: 6320610511130513509}
-    - renderer: {fileID: 1284275444631948532}
-    - renderer: {fileID: 8082915348937751005}
+    renderers: []
   m_Enabled: 1
 --- !u!4 &7387352767931477902 stripped
 Transform:
