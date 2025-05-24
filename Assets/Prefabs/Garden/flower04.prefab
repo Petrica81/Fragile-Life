@@ -3859,42 +3859,12 @@ LODGroup:
     - renderer: {fileID: 8872723864082273478}
     - renderer: {fileID: 5777417687104745548}
     - renderer: {fileID: 2573002679229279230}
-  - screenRelativeHeight: 0.13069876
+  - screenRelativeHeight: 0.11555249
     fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 6789983973748202982}
-    - renderer: {fileID: 1748810403776269120}
-    - renderer: {fileID: 1245208671503790723}
-    - renderer: {fileID: 7745558248819110748}
-    - renderer: {fileID: 771873983002965775}
-    - renderer: {fileID: 7550914247023106270}
-    - renderer: {fileID: 9201954182440578096}
-    - renderer: {fileID: 7073985416903998036}
-    - renderer: {fileID: 1316127496817885054}
-    - renderer: {fileID: 7383263095848574449}
+    renderers: []
   - screenRelativeHeight: 0.089646325
     fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 6512523759890280715}
-    - renderer: {fileID: 5399980821159091092}
-    - renderer: {fileID: 4708537312063246808}
-    - renderer: {fileID: 1947503864151652398}
-    - renderer: {fileID: 4803561253442746243}
-    - renderer: {fileID: 4664084221742303936}
-    - renderer: {fileID: 2596460346627237601}
-    - renderer: {fileID: 214185841931666290}
-    - renderer: {fileID: 7503962265474905604}
-    - renderer: {fileID: 620655385088713906}
-    - renderer: {fileID: 1110519393391570244}
-    - renderer: {fileID: 3871151834939708717}
-    - renderer: {fileID: 2938633246189467365}
-    - renderer: {fileID: 9097497638907452064}
-    - renderer: {fileID: 9173138378629073994}
-    - renderer: {fileID: 3892452361668860361}
-    - renderer: {fileID: 3265895033149664274}
-    - renderer: {fileID: 1268664666495760970}
-    - renderer: {fileID: 9042039171309210579}
-    - renderer: {fileID: 4974980002745975137}
+    renderers: []
   m_Enabled: 1
 --- !u!1 &6117406349802029436 stripped
 GameObject:
