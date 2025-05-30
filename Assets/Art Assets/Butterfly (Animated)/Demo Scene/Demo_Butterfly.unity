@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4041459}
   - component: {fileID: 4041458}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ImageEcranPornit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4737896, g: 0.5943396, b: 0.5943396, a: 0.007843138}
+  m_Color: {r: 0.5421118, g: 0.681, b: 0.681, a: 0.078431375}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -741,13 +741,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641130273}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.040565826, y: -0.29215485, z: 0.13141228, w: 0.94643056}
-  m_LocalPosition: {x: -5, y: -1.09, z: 2.79}
-  m_LocalScale: {x: 21.79, y: 0.5, z: 0.1}
+  m_LocalRotation: {x: 0.011809545, y: -0.37930858, z: -0.061861016, w: 0.9231245}
+  m_LocalPosition: {x: 0.12081596, y: 0.25628692, z: 2.250733}
+  m_LocalScale: {x: 8.585043, y: 0.329525, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -34.31, z: 15.81}
+  m_LocalEulerAnglesHint: {x: -1.44, y: -44.586, z: -7.077}
 --- !u!1 &674389635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,16 +2668,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590827888}
-  m_LocalRotation: {x: 0, y: 0, z: 0.14798203, w: 0.98899007}
-  m_LocalPosition: {x: 0, y: 0, z: 1116}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.008922473, y: -0.18717495, z: 0.0019978434, w: 0.98228407}
+  m_LocalPosition: {x: 0, y: 0, z: -114}
+  m_LocalScale: {x: 0.39399, y: 0.65905, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 124911292}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.02}
+  m_LocalEulerAnglesHint: {x: 1.047, y: -21.577, z: 0.034}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -117.2, y: 547}
+  m_AnchoredPosition: {x: 246, y: 385}
   m_SizeDelta: {x: 5000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590827890
@@ -2700,7 +2700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fragile Life Fragile Life FraGile Life FRagile Life fragile life
+  m_text: 'Fragile Life Fragile Life FraGile Life FRagile Life fragile '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47f1c556e9e8f454d963d01a5a7a0837, type: 2}
   m_sharedMaterial: {fileID: 5476206040297854735, guid: 47f1c556e9e8f454d963d01a5a7a0837, type: 2}
@@ -2727,8 +2727,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 130
-  m_fontSizeBase: 130
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
