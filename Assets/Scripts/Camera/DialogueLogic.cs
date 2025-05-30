@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Globalization;
 public class DialogueLogic : MonoBehaviour
 {
     [SerializeField][Tooltip("Minimum distance to trigger dialogue camera focus")]
@@ -22,18 +24,15 @@ public class DialogueLogic : MonoBehaviour
         {
             return;
         }
-        if (Vector3.Distance(this.transform.position, _player.transform.position) > _minDistance)
+        if (Vector3.Distance(this.transform.position, _player.transform.position) < _minDistance)
         {
-            if (_text.activeSelf)
+            if (!_text.activeSelf)
             {
-                _text.SetActive(false);
+                _text.SetActive(true);
+                Destroy(gameObject, 30f);
             }
-            return;
         }
-        else if (!_text.activeSelf)
-        {
-            _text.SetActive(true);
-        } 
+        else return;
         this.transform.LookAt(_mainCamera);
     }
 }
