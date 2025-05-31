@@ -1,14 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Audio; // Required for audio control
+using UnityEngine.Audio;
+using TMPro;
 
 public class MenuStuff : MonoBehaviour
 {
     public Image ImageScreenSettings;
     public Button toggleButton;
-    public Slider volumeSlider; // Assign in Inspector
-    public AudioMixer audioMixer; // Assign your main audio mixer
+    public Slider volumeSlider;
+    public AudioMixer audioMixer;
+    public TextMeshProUGUI TextVolume;
+    public TextMeshProUGUI TextFullscreen;
+    public Toggle fullscreenToggle;
+
     public string volumeParameter = "MusicVolume"; // Match mixer exposed parameter
     public float fadeDuration = 0.3f;
 
@@ -18,10 +23,14 @@ public class MenuStuff : MonoBehaviour
 
     private void Start()
     {
+        LoadFullscreenPreference();
+
         // Initialize UI elements
         ImageScreenSettings.color = new Color(fullVisibleColor.r, fullVisibleColor.g, fullVisibleColor.b, 0);
         ImageScreenSettings.gameObject.SetActive(true);
         volumeSlider.gameObject.SetActive(false);
+        TextVolume.gameObject.SetActive(false);
+        TextFullscreen.gameObject.SetActive(false);
 
         // Set up button listener
         toggleButton.onClick.AddListener(ToggleImageVisibility);
@@ -31,6 +40,14 @@ public class MenuStuff : MonoBehaviour
 
         // Load saved volume
         LoadVolume();
+
+        // Initialize fullscreen toggle
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.isOn = Screen.fullScreen;
+            fullscreenToggle.onValueChanged.AddListener(ToggleFullscreen);
+            fullscreenToggle.gameObject.SetActive(false); // Start hidden
+        }
     }
 
     private void ToggleImageVisibility()
@@ -53,8 +70,11 @@ public class MenuStuff : MonoBehaviour
         float elapsed = 0f;
         Color startColor = ImageScreenSettings.color;
 
-        // Show slider immediately
+        // Show UI elements immediately
         volumeSlider.gameObject.SetActive(true);
+        TextVolume.gameObject.SetActive(true);
+        TextFullscreen.gameObject.SetActive(true);
+        if (fullscreenToggle != null) fullscreenToggle.gameObject.SetActive(true);
 
         while (elapsed < fadeDuration)
         {
@@ -82,9 +102,12 @@ public class MenuStuff : MonoBehaviour
             yield return null;
         }
 
-        // Hide slider after fade completes
+        // Hide UI elements after fade completes
         volumeSlider.gameObject.SetActive(false);
+        TextVolume.gameObject.SetActive(false);
+        TextFullscreen.gameObject.SetActive(false);
         isTransitioning = false;
+        if (fullscreenToggle != null) fullscreenToggle.gameObject.SetActive(false);
     }
 
     private void SetVolume(float volume)
@@ -112,9 +135,40 @@ public class MenuStuff : MonoBehaviour
         }
     }
 
+    private void ToggleFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+        PlayerPrefs.SetInt("FullscreenMode", isFullscreen ? 1 : 0);
+
+        // Optional: Update text to reflect current state
+        if (TextFullscreen != null)
+        {
+            TextFullscreen.text = isFullscreen ? "Fullscreen: ON" : "Fullscreen: OFF";
+        }
+    }
+
+    private void LoadFullscreenPreference()
+    {
+        if (PlayerPrefs.HasKey("FullscreenMode"))
+        {
+            bool fullscreen = PlayerPrefs.GetInt("FullscreenMode") == 1;
+            Screen.fullScreen = fullscreen;
+            if (fullscreenToggle != null) fullscreenToggle.isOn = fullscreen;
+        }
+        else
+        {
+            // Default to current screen mode
+            if (fullscreenToggle != null) fullscreenToggle.isOn = Screen.fullScreen;
+        }
+    }
+
     private void OnDestroy()
     {
         toggleButton.onClick.RemoveListener(ToggleImageVisibility);
         volumeSlider.onValueChanged.RemoveListener(SetVolume);
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.onValueChanged.RemoveListener(ToggleFullscreen);
+        }
     }
 }
