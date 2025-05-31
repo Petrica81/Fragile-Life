@@ -70,17 +70,44 @@ public class MenuStuff : MonoBehaviour
         float elapsed = 0f;
         Color startColor = ImageScreenSettings.color;
 
-        // Show UI elements immediately
+        // Activate all elements before fading
         volumeSlider.gameObject.SetActive(true);
         TextVolume.gameObject.SetActive(true);
         TextFullscreen.gameObject.SetActive(true);
         if (fullscreenToggle != null) fullscreenToggle.gameObject.SetActive(true);
 
+        // Get initial alpha states
+        Color volumeTextColor = TextVolume.color;
+        Color fullscreenTextColor = TextFullscreen.color;
+        ColorBlock toggleColors = fullscreenToggle.colors;
+
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / fadeDuration);
+
+            // Fade main panel
             ImageScreenSettings.color = Color.Lerp(startColor, fullVisibleColor, t);
+
+            // Fade text elements
+            TextVolume.color = new Color(volumeTextColor.r, volumeTextColor.g, volumeTextColor.b, t);
+            TextFullscreen.color = new Color(fullscreenTextColor.r, fullscreenTextColor.g, fullscreenTextColor.b, t);
+
+            // Fade toggle (if exists)
+            if (fullscreenToggle != null)
+            {
+                var colors = fullscreenToggle.colors;
+                colors.normalColor = new Color(colors.normalColor.r, colors.normalColor.g, colors.normalColor.b, t);
+                colors.highlightedColor = new Color(colors.highlightedColor.r, colors.highlightedColor.g, colors.highlightedColor.b, t);
+                fullscreenToggle.colors = colors;
+
+                TextMeshProUGUI toggleText = fullscreenToggle.GetComponentInChildren<TextMeshProUGUI>();
+                if (toggleText != null)
+                {
+                    toggleText.color = new Color(toggleText.color.r, toggleText.color.g, toggleText.color.b, t);
+                }
+            }
+
             yield return null;
         }
 
@@ -94,20 +121,49 @@ public class MenuStuff : MonoBehaviour
         Color startColor = ImageScreenSettings.color;
         Color targetColor = new Color(fullVisibleColor.r, fullVisibleColor.g, fullVisibleColor.b, 0);
 
+        // Get initial alpha states
+        Color volumeTextColor = TextVolume.color;
+        Color fullscreenTextColor = TextFullscreen.color;
+        ColorBlock toggleColors = fullscreenToggle.colors;
+
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / fadeDuration);
-            ImageScreenSettings.color = Color.Lerp(startColor, targetColor, t);
+            float t = 1 - Mathf.Clamp01(elapsed / fadeDuration); // Inverse lerp
+
+            // Fade main panel
+            ImageScreenSettings.color = Color.Lerp(startColor, targetColor, 1 - t);
+
+            // Fade text elements
+            TextVolume.color = new Color(volumeTextColor.r, volumeTextColor.g, volumeTextColor.b, t);
+            TextFullscreen.color = new Color(fullscreenTextColor.r, fullscreenTextColor.g, fullscreenTextColor.b, t);
+
+            // Fade toggle (if exists)
+            if (fullscreenToggle != null)
+            {
+                var colors = fullscreenToggle.colors;
+                colors.normalColor = new Color(colors.normalColor.r, colors.normalColor.g, colors.normalColor.b, t);
+                colors.highlightedColor = new Color(colors.highlightedColor.r, colors.highlightedColor.g, colors.highlightedColor.b, t);
+                fullscreenToggle.colors = colors;
+
+                TextMeshProUGUI toggleText = fullscreenToggle.GetComponentInChildren<TextMeshProUGUI>();
+                if (toggleText != null)
+                {
+                    toggleText.color = new Color(toggleText.color.r, toggleText.color.g, toggleText.color.b, t);
+                }
+            }
+
             yield return null;
         }
 
-        // Hide UI elements after fade completes
+        // Deactivate after fading
         volumeSlider.gameObject.SetActive(false);
         TextVolume.gameObject.SetActive(false);
         TextFullscreen.gameObject.SetActive(false);
-        isTransitioning = false;
         if (fullscreenToggle != null) fullscreenToggle.gameObject.SetActive(false);
+
+        isTransitioning = false;
+    
     }
 
     private void SetVolume(float volume)

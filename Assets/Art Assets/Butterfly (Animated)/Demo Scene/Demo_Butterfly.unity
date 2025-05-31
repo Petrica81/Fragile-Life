@@ -560,7 +560,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.76470596, g: 0.43921572, b: 0.6745098, a: 1}
+    m_NormalColor: {r: 0.6320754, g: 0.40846384, b: 0.5728842, a: 1}
     m_HighlightedColor: {r: 0.8745099, g: 0.5764706, b: 0.7843138, a: 1}
     m_PressedColor: {r: 0.76470596, g: 0.43921572, b: 0.6745098, a: 1}
     m_SelectedColor: {r: 0.8745099, g: 0.5764706, b: 0.7843138, a: 1}
@@ -2243,7 +2243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6509804}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2963,14 +2963,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 2cb65bf3cdc61b44d894fe786ee448f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3038,7 +3038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20392159, g: 0.23137257, b: 0.21960786, a: 0.6745098}
+  m_Color: {r: 0.6117647, g: 0.6039216, b: 0.58431375, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4411,7 +4411,7 @@ Transform:
   m_GameObject: {fileID: 1808117024}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0039150193, y: 0.48994252, z: -0.0022003446, w: 0.8717432}
-  m_LocalPosition: {x: -3.75, y: -1.23, z: 9.6}
+  m_LocalPosition: {x: -3.75, y: -1.187, z: 9.6}
   m_LocalScale: {x: 24.293385, y: 0.97536, z: 14.601999}
   m_ConstrainProportionsScale: 0
   m_Children: []
