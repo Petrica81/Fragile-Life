@@ -6769,6 +6769,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403124c5a9de9ef45af5fa326d5570c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterSounds:
+  - {fileID: 8300000, guid: 8b4c0b45f3cd9654a965f08114cef228, type: 3}
+  - {fileID: 8300000, guid: 7088600b6d838b24f9a40a66fb14caae, type: 3}
+  - {fileID: 8300000, guid: 514000c11b217d74688fd5f667db84d8, type: 3}
   panels:
   - panelObject: {fileID: 886119881}
     canvasGroup: {fileID: 886119883}
