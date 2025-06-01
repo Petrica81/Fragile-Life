@@ -435,7 +435,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87514573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1000001}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -443,7 +443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.046000004}
+  m_AnchoredPosition: {x: -0.107, y: 0.046000004}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87514575
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: New Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a864a668e9144e24ebdd2350ee847b18, type: 2}
   m_sharedMaterial: {fileID: 2868230282361665303, guid: a864a668e9144e24ebdd2350ee847b18, type: 2}
@@ -1819,7 +1819,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500152984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.099999934}
+  m_LocalPosition: {x: 0, y: 0, z: -0.100000024}
   m_LocalScale: {x: 0.8399999, y: 0.84, z: 0.8399999}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1827,8 +1827,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.37629998, y: 0.4147}
-  m_SizeDelta: {x: 2.1902, y: 0.323}
+  m_AnchoredPosition: {x: 0.3192, y: 0.4147}
+  m_SizeDelta: {x: 2.271, y: 0.323}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &500152986
 MonoBehaviour:
@@ -4286,7 +4286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1446074047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5945,8 +5945,8 @@ RectTransform:
   - {fileID: 87514574}
   - {fileID: 242174519}
   - {fileID: 1855202823}
-  - {fileID: 1040872345}
   - {fileID: 115604529}
+  - {fileID: 1040872345}
   - {fileID: 1573289944}
   m_Father: {fileID: 989018309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6018,7 +6018,7 @@ GameObject:
   - component: {fileID: 1759086977}
   - component: {fileID: 1759086976}
   m_Layer: 5
-  m_Name: StartButton
+  m_Name: NewGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6734,6 +6734,7 @@ GameObject:
   - component: {fileID: 1834710695}
   - component: {fileID: 1834710696}
   - component: {fileID: 1834710697}
+  - component: {fileID: 1834710698}
   m_Layer: 0
   m_Name: MenuLogic
   m_TagString: Untagged
@@ -6802,6 +6803,27 @@ MonoBehaviour:
   volumeParameter: MasterVolume
   fullscreenToggle: {fileID: 841242025}
   fullscreenStatusText: {fileID: 203762887}
+--- !u!114 &1834710698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834710693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709575127a23232419b76c12db347be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSlots:
+  - {fileID: 1756579964}
+  - {fileID: 219930844}
+  - {fileID: 219930844}
+  selectionBorders:
+  - {fileID: 1446074046}
+  - {fileID: 1841090019}
+  - {fileID: 1527870058}
+  navigationSound: {fileID: 8300000, guid: e0bf2139ff69355429ccd0eb8e53f0b1, type: 3}
 --- !u!1 &1841090019
 GameObject:
   m_ObjectHideFlags: 0
@@ -6979,10 +7001,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 8a6fe998b16c86a40935dae370de3885, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7538f8962c200ce46b28c903c1c25d4f, type: 3}
-  m_Resource: {fileID: 8300000, guid: 7538f8962c200ce46b28c903c1c25d4f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d61a2d8894ea5f244a5e5f82d0c7aac9, type: 3}
+  m_Resource: {fileID: 8300000, guid: d61a2d8894ea5f244a5e5f82d0c7aac9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
