@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.506, y: 0, z: -1.094}
-  m_LocalScale: {x: 300, y: 1400, z: 1400}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 42.857155, y: 200.00002, z: 200.00002}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4257442785975635425}
   m_Father: {fileID: 0}
@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 4257442785975635425}
   - component: {fileID: 2776418915072151638}
   - component: {fileID: 2073327458670848426}
-  - component: {fileID: 3255575657442548380}
-  m_Layer: 3
-  m_Name: HiseZone
+  - component: {fileID: 1715845293307488324}
+  m_Layer: 0
+  m_Name: TransitZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,9 +151,9 @@ Transform:
   m_GameObject: {fileID: 8259380064740818475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.1179, y: 0, z: 0}
+  m_LocalScale: {x: 0.17, y: 0.85, z: 0.85}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1594427535656827733}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -187,7 +187,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8700501925200983339, guid: dc2f60ef6925fca47a611b6129ee6eb1, type: 3}
---- !u!114 &3255575657442548380
+--- !u!114 &1715845293307488324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,7 +196,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8259380064740818475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423a64ab61effb34f81ab3d5e90d3a12, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f89457a61bf5024d9d104b328ac27fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObjects: []
+  nextSceneName: 4_Tunnel_Labirinth
+  keepPlayerBetweenScenes: 1
+  fadeDuration: 1
+  fadeImage: {fileID: 0}
+  fadeAnimator: {fileID: 0}
+  transitionTrigger: {fileID: 2073327458670848426}
