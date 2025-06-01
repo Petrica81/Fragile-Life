@@ -4,6 +4,8 @@ using System.Collections;
 
 public class PanelManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip[] waterSounds;
+
     [System.Serializable]
     public class Panel
     {
@@ -72,6 +74,8 @@ public class PanelManager : MonoBehaviour
         panel.isOpen = true;
         currentOpenPanel = panel;
 
+        PlayRandomWaterSound();
+
         float elapsed = 0f;
         while (elapsed < panel.fadeDuration)
         {
@@ -95,6 +99,8 @@ public class PanelManager : MonoBehaviour
         panel.canvasGroup.interactable = false;
         panel.canvasGroup.blocksRaycasts = false;
         panel.isOpen = false;
+
+        PlayRandomWaterSound();
 
         float elapsed = 0f;
         float startAlpha = panel.canvasGroup.alpha;
@@ -157,5 +163,14 @@ public class PanelManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    private void PlayRandomWaterSound()
+    {
+        if (waterSounds != null && waterSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, waterSounds.Length);
+            AudioSource.PlayClipAtPoint(waterSounds[randomIndex], Camera.main.transform.position);
+        }
     }
 }
