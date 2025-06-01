@@ -88,7 +88,7 @@ public class PanelManager : MonoBehaviour
         SetAllButtonsInteractable(true);
     }
 
-    private IEnumerator ClosePanel(Panel panel)
+    public IEnumerator ClosePanel(Panel panel)
     {
         SetAllButtonsInteractable(false);
 
@@ -126,5 +126,36 @@ public class PanelManager : MonoBehaviour
         {
             panel.triggerButton.interactable = state;
         }
+    }
+
+    public void ClosePanelByIndex(int panelIndex)
+    {
+        if (panelIndex >= 0 && panelIndex < panels.Length)
+        {
+            if (currentAnimation != null)
+            {
+                StopCoroutine(currentAnimation);
+            }
+            currentAnimation = StartCoroutine(ClosePanel(panels[panelIndex]));
+            currentOpenPanel = null;
+        }
+        else
+        {
+            Debug.LogError($"Invalid panel index: {panelIndex}");
+        }
+    }
+
+    public void CancelQuit()
+    {
+        ClosePanelByIndex(2);
+    }
+
+    public void ConfirmQuit()
+    {
+        #if UNITY_EDITOR // Checks if the code is running in the Unity Editor
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }
