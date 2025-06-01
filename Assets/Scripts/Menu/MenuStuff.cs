@@ -6,6 +6,7 @@ using TMPro;
 
 public class MenuStuff : MonoBehaviour
 {
+    //Settings Panel
     public Image ImageScreenSettings;
     public Button toggleButton;
     public Slider volumeSlider;
@@ -13,30 +14,38 @@ public class MenuStuff : MonoBehaviour
     public TextMeshProUGUI TextVolume;
     public TextMeshProUGUI TextFullscreen;
     public Toggle fullscreenToggle;
+    public TextMeshProUGUI TextSettings;
+    public Image SettingsTitleBackground;
+
 
     public string volumeParameter = "MusicVolume"; // Match mixer exposed parameter
     public float fadeDuration = 0.3f;
 
-    private Color fullVisibleColor = new Color(137f / 255f, 185f / 255f, 179f / 255f, 27f / 255f);
     private bool isTransitioning = false;
     private Coroutine currentFadeRoutine;
 
+    // Settings UI Elements colors
     private float originalVolumeTextAlpha;
     private float originalFullscreenTextAlpha;
     private Color originalToggleNormalColor;
     private Color originalToggleHighlightedColor;
+    private Color originalImageColor;
     private float originalToggleTextAlpha;
+    private float originalSettingsTextAlpha;
+    private Color originalSettingsTitleBgColor;
+
 
     private void Start()
     {
         LoadFullscreenPreference();
 
         // Initialize UI elements
-        ImageScreenSettings.color = new Color(fullVisibleColor.r, fullVisibleColor.g, fullVisibleColor.b, 0);
         ImageScreenSettings.gameObject.SetActive(true);
         volumeSlider.gameObject.SetActive(false);
         TextVolume.gameObject.SetActive(false);
         TextFullscreen.gameObject.SetActive(false);
+        TextSettings.gameObject.SetActive(false);
+        SettingsTitleBackground.gameObject.SetActive(false);
 
         // Set up button listener
         toggleButton.onClick.AddListener(ToggleImageVisibility);
@@ -50,6 +59,22 @@ public class MenuStuff : MonoBehaviour
         // Store original alpha values
         originalVolumeTextAlpha = TextVolume.color.a;
         originalFullscreenTextAlpha = TextFullscreen.color.a;
+        originalSettingsTextAlpha = TextSettings.color.a;
+        originalSettingsTitleBgColor = SettingsTitleBackground.color;
+        originalImageColor = ImageScreenSettings.color;
+
+        // set alpha value to 0
+        ImageScreenSettings.color = new Color(
+            originalImageColor.r, 
+            originalImageColor.g, 
+            originalImageColor.b, 
+            0);
+
+        SettingsTitleBackground.color = new Color(
+            originalSettingsTitleBgColor.r,
+            originalSettingsTitleBgColor.g,
+            originalSettingsTitleBgColor.b,
+            0);
 
         // Initialize fullscreen toggle
         if (fullscreenToggle != null)
@@ -73,7 +98,7 @@ public class MenuStuff : MonoBehaviour
     {
         if (isTransitioning) return;
 
-        bool shouldFadeIn = ImageScreenSettings.color.a < fullVisibleColor.a / 2f;
+        bool shouldFadeIn = ImageScreenSettings.color.a < originalImageColor.a / 2f;
 
         if (currentFadeRoutine != null)
         {
@@ -94,22 +119,39 @@ public class MenuStuff : MonoBehaviour
         TextVolume.gameObject.SetActive(true);
         TextFullscreen.gameObject.SetActive(true);
         if (fullscreenToggle != null) fullscreenToggle.gameObject.SetActive(true);
+        TextSettings.gameObject.SetActive(true);
+        SettingsTitleBackground.gameObject.SetActive(true);
 
         // Get initial alpha states
         Color volumeTextColor = TextVolume.color;
         Color fullscreenTextColor = TextFullscreen.color;
+        Color settingsTextColor = TextSettings.color;
+        Color settingsTitleBgColor = SettingsTitleBackground.color;
 
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / fadeDuration);
 
-            // Fade main panel
-            ImageScreenSettings.color = Color.Lerp(startColor, fullVisibleColor, t);
+            // Fade main panel to its original color
+            ImageScreenSettings.color = Color.Lerp(
+                startColor,
+                originalImageColor,
+                t
+            );
+
+            // Fade title background
+            SettingsTitleBackground.color = new Color(
+                settingsTitleBgColor.r,
+                settingsTitleBgColor.g,
+                settingsTitleBgColor.b,
+                Mathf.Lerp(0, originalSettingsTitleBgColor.a, t)
+            );
 
             // Fade text elements to their original alpha
             TextVolume.color = new Color(volumeTextColor.r, volumeTextColor.g, volumeTextColor.b, Mathf.Lerp(0, originalVolumeTextAlpha, t));
             TextFullscreen.color = new Color(fullscreenTextColor.r, fullscreenTextColor.g, fullscreenTextColor.b, Mathf.Lerp(0, originalFullscreenTextAlpha, t));
+            TextSettings.color = new Color(settingsTextColor.r, settingsTextColor.g, settingsTextColor.b, Mathf.Lerp(0, originalSettingsTextAlpha, t));
 
             // Fade toggle (if exists)
             if (fullscreenToggle != null)
@@ -130,7 +172,6 @@ public class MenuStuff : MonoBehaviour
         }
 
         isTransitioning = false;
-
     }
 
     private IEnumerator FadeOut()
@@ -138,23 +179,38 @@ public class MenuStuff : MonoBehaviour
         isTransitioning = true;
         float elapsed = 0f;
         Color startColor = ImageScreenSettings.color;
-        Color targetColor = new Color(fullVisibleColor.r, fullVisibleColor.g, fullVisibleColor.b, 0);
+        Color targetColor = new Color(originalImageColor.r, originalImageColor.g, originalImageColor.b, 0);
 
         // Get current alpha states (which should be at their original values)
         Color volumeTextColor = TextVolume.color;
         Color fullscreenTextColor = TextFullscreen.color;
+        Color settingsTextColor = TextSettings.color;
+        Color settingsTitleBgColor = SettingsTitleBackground.color;
 
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
             float t = 1 - Mathf.Clamp01(elapsed / fadeDuration); // Inverse lerp
 
-            // Fade main panel
-            ImageScreenSettings.color = Color.Lerp(startColor, targetColor, 1 - t);
+            // Fade title background
+            SettingsTitleBackground.color = new Color(
+                settingsTitleBgColor.r,
+                settingsTitleBgColor.g,
+                settingsTitleBgColor.b,
+                Mathf.Lerp(0, originalSettingsTitleBgColor.a, t)
+            );
+
+            // Fade main panel from current color to transparent (keeping RGB)
+            ImageScreenSettings.color = Color.Lerp(
+                startColor,
+                targetColor,
+                1 - t
+            );
 
             // Fade text elements from their original alpha to 0
             TextVolume.color = new Color(volumeTextColor.r, volumeTextColor.g, volumeTextColor.b, Mathf.Lerp(0, originalVolumeTextAlpha, t));
             TextFullscreen.color = new Color(fullscreenTextColor.r, fullscreenTextColor.g, fullscreenTextColor.b, Mathf.Lerp(0, originalFullscreenTextAlpha, t));
+            TextSettings.color = new Color(settingsTextColor.r, settingsTextColor.g, settingsTextColor.b, Mathf.Lerp(0, originalSettingsTextAlpha, t));
 
             // Fade toggle (if exists)
             if (fullscreenToggle != null)
@@ -175,9 +231,11 @@ public class MenuStuff : MonoBehaviour
         }
 
         // Deactivate after fading
+        SettingsTitleBackground.gameObject.SetActive(false);
         volumeSlider.gameObject.SetActive(false);
         TextVolume.gameObject.SetActive(false);
         TextFullscreen.gameObject.SetActive(false);
+        TextSettings.gameObject.SetActive(false);
         if (fullscreenToggle != null) fullscreenToggle.gameObject.SetActive(false);
 
         isTransitioning = false;
