@@ -41,6 +41,9 @@ public class PanelManager : MonoBehaviour
 
     public void TogglePanel(Panel panel)
     {
+        // Play sound immediately when any button is pressed
+        PlayRandomWaterSound();
+
         if (currentAnimation != null)
         {
             StopCoroutine(currentAnimation);
@@ -74,8 +77,6 @@ public class PanelManager : MonoBehaviour
         panel.isOpen = true;
         currentOpenPanel = panel;
 
-        PlayRandomWaterSound();
-
         float elapsed = 0f;
         while (elapsed < panel.fadeDuration)
         {
@@ -99,8 +100,6 @@ public class PanelManager : MonoBehaviour
         panel.canvasGroup.interactable = false;
         panel.canvasGroup.blocksRaycasts = false;
         panel.isOpen = false;
-
-        PlayRandomWaterSound();
 
         float elapsed = 0f;
         float startAlpha = panel.canvasGroup.alpha;
@@ -138,6 +137,9 @@ public class PanelManager : MonoBehaviour
     {
         if (panelIndex >= 0 && panelIndex < panels.Length)
         {
+            // Play sound for non-button triggered closes
+            PlayRandomWaterSound();
+
             if (currentAnimation != null)
             {
                 StopCoroutine(currentAnimation);
@@ -158,7 +160,7 @@ public class PanelManager : MonoBehaviour
 
     public void ConfirmQuit()
     {
-        #if UNITY_EDITOR // Checks if the code is running in the Unity Editor
+        #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else
             Application.Quit();
