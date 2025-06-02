@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems; //IPointerClickHandler
+using Mono.Cecil.Cil;
 
 public class LevelSelector : MonoBehaviour
 {
-    [SerializeField] private Image[] levelSlots; // Assign your 3 level slot images in inspector
-    [SerializeField] private GameObject[] selectionBorders; // Assign the 3 border GameObjects
+    [SerializeField] private Image[] levelSlots;
+    [SerializeField] private GameObject[] selectionBorders;
     [SerializeField] private AudioClip navigationSound;
 
     private int currentSelectedIndex = 0;
@@ -14,14 +16,28 @@ public class LevelSelector : MonoBehaviour
     {
         // Initialize selection
         UpdateSelectionVisual();
+
+        // Add button click handlers
+        for (int i = 0; i < levelSlots.Length; i++)
+        {
+            int index = i; // Important: Capture current index for closure
+            Button button = levelSlots[i].GetComponent<Button>();
+            button.onClick.AddListener(() => SelectLevel(index));
+        }
+    }
+
+    // New method for button clicks
+    public void SelectLevel(int index)
+    {
+        currentSelectedIndex = index;
+        UpdateSelectionVisual();
+        PlayNavigationSound();
     }
 
     private void Update()
     {
         HandleKeyboardNavigation();
 
-
-        // Scene Index Validation
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             LoadSelectedLevel();
@@ -42,7 +58,7 @@ public class LevelSelector : MonoBehaviour
 
     private void LoadSelectedLevel()
     {
-        int sceneIndex = GetSelectedLevel();
+        int sceneIndex = currentSelectedIndex + 1;
         if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             Debug.Log("Loading level: " + sceneIndex);
@@ -60,10 +76,8 @@ public class LevelSelector : MonoBehaviour
         currentSelectedIndex = (currentSelectedIndex + direction + levelSlots.Length) % levelSlots.Length;
 
         UpdateSelectionVisual();
-        if (navigationSound != null)
-        {
-            AudioSource.PlayClipAtPoint(navigationSound, Camera.main.transform.position);
-        }
+
+        PlayNavigationSound();
     }
 
     private void UpdateSelectionVisual()
@@ -81,9 +95,11 @@ public class LevelSelector : MonoBehaviour
         }
     }
 
-    // Call this when player confirms selection (e.g., with Enter key)
-    public int GetSelectedLevel()
+    private void PlayNavigationSound()
     {
-        return currentSelectedIndex + 1; // Returns 1, 2, or 3
+        if (navigationSound != null)
+        {
+            AudioSource.PlayClipAtPoint(navigationSound, Camera.main.transform.position);
+        }
     }
 }
