@@ -167,12 +167,20 @@ public class PanelManager : MonoBehaviour
         #endif
     }
 
+    private int lastPlayedIndex = -1;
+
     private void PlayRandomWaterSound()
     {
-        if (waterSounds != null && waterSounds.Length > 0)
+        if (waterSounds == null || waterSounds.Length == 0) return;
+
+        int randomIndex;
+        do
         {
-            int randomIndex = Random.Range(0, waterSounds.Length);
-            AudioSource.PlayClipAtPoint(waterSounds[randomIndex], Camera.main.transform.position);
+            randomIndex = Random.Range(0, waterSounds.Length);
         }
+        while (randomIndex == lastPlayedIndex && waterSounds.Length > 1); // Ensure variety
+
+        lastPlayedIndex = randomIndex;
+        AudioSource.PlayClipAtPoint(waterSounds[randomIndex], Camera.main.transform.position);
     }
 }
