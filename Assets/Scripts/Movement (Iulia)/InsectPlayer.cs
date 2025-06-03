@@ -36,6 +36,13 @@ public class InsectPlayer : MonoBehaviour
         Debug.Log($"Camera Component: {cameraTransform?.GetComponent<Camera>() != null}");
         cameraTransform.gameObject.SetActive(false);
         cameraTransform.gameObject.SetActive(true); // Forces refresh
+
+        GameObject overlayQuad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        overlayQuad.name = "InsectVisionOverlay";
+        overlayQuad.transform.SetParent(cameraTransform);
+        overlayQuad.transform.localPosition = new Vector3(0, 0, 0.3f); // 30cm in front of camera
+        overlayQuad.transform.localRotation = Quaternion.identity;
+        Destroy(overlayQuad.GetComponent<Collider>()); // Remove unnecessary collider
     }
 
     void Update()
