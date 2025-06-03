@@ -21,12 +21,14 @@ public class Foot : MonoBehaviour
 
     public StepPhases _currentPhase = StepPhases.MOVING_TO_TARGET;
     public UnityEvent<bool> OnPlantedChange;
+    private BodyMovement6Legs _bodyMovement;
 
     // Start is called before the first frame update
     void Start()
     {
         _placementRaycast = _footPlacementTarget.GetComponent<PlacementRaycast>();
         _targetPosition = _footPlacementTarget.position;
+        _bodyMovement = _bodyTransform.GetComponent<BodyMovement6Legs>();
     }
 
     // Update is called once per frame
@@ -48,8 +50,8 @@ public class Foot : MonoBehaviour
             _currentPhase = StepPhases.RESTING;
             OnPlantedChange?.Invoke(true);
         }
-
-        Move();
+        if (_bodyMovement._input != Vector2.zero)
+            Move();
     }
 
     private void Move()
