@@ -132,6 +132,11 @@ public class BodyMovement6Legs : MonoBehaviour
             _walkableLayer
             );
 
+        Debug.DrawRay(
+            transform.position + castOffset,
+            -transform.up * (_castHeightAboveBody + _groundCastDepth),
+            hit.collider ? Color.green : Color.red
+        );
         return hit;
     }
 }
