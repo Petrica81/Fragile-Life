@@ -41,6 +41,9 @@ public class PanelManager : MonoBehaviour
 
     public void TogglePanel(Panel panel)
     {
+        // Play sound immediately when any button is pressed
+        PlayRandomWaterSound();
+
         if (currentAnimation != null)
         {
             StopCoroutine(currentAnimation);
@@ -74,8 +77,6 @@ public class PanelManager : MonoBehaviour
         panel.isOpen = true;
         currentOpenPanel = panel;
 
-        PlayRandomWaterSound();
-
         float elapsed = 0f;
         while (elapsed < panel.fadeDuration)
         {
@@ -99,8 +100,6 @@ public class PanelManager : MonoBehaviour
         panel.canvasGroup.interactable = false;
         panel.canvasGroup.blocksRaycasts = false;
         panel.isOpen = false;
-
-        PlayRandomWaterSound();
 
         float elapsed = 0f;
         float startAlpha = panel.canvasGroup.alpha;
@@ -138,6 +137,9 @@ public class PanelManager : MonoBehaviour
     {
         if (panelIndex >= 0 && panelIndex < panels.Length)
         {
+            // Play sound for non-button triggered closes
+            PlayRandomWaterSound();
+
             if (currentAnimation != null)
             {
                 StopCoroutine(currentAnimation);
@@ -158,19 +160,27 @@ public class PanelManager : MonoBehaviour
 
     public void ConfirmQuit()
     {
-        #if UNITY_EDITOR // Checks if the code is running in the Unity Editor
+        #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else
             Application.Quit();
         #endif
     }
 
+    private int lastPlayedIndex = -1;
+
     private void PlayRandomWaterSound()
     {
-        if (waterSounds != null && waterSounds.Length > 0)
+        if (waterSounds == null || waterSounds.Length == 0) return;
+
+        int randomIndex;
+        do
         {
-            int randomIndex = Random.Range(0, waterSounds.Length);
-            AudioSource.PlayClipAtPoint(waterSounds[randomIndex], Camera.main.transform.position);
+            randomIndex = Random.Range(0, waterSounds.Length);
         }
+        while (randomIndex == lastPlayedIndex && waterSounds.Length > 1); // Ensure variety
+
+        lastPlayedIndex = randomIndex;
+        AudioSource.PlayClipAtPoint(waterSounds[randomIndex], Camera.main.transform.position);
     }
 }
