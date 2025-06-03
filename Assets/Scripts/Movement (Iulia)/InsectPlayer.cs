@@ -3,13 +3,19 @@ using UnityEngine;
 public class InsectPlayer : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float sprintSpeed = 6f; // New sprint speed
     [SerializeField] private float lookSpeed = 2f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float staminaMax = 100f; // Maximum stamina
+    [SerializeField] private float staminaDrainRate = 20f; // Stamina drain per second while sprinting
+    [SerializeField] private float staminaRegenRate = 15f; // Stamina regen per second when not sprinting
 
     [SerializeField] private CharacterController controller;
     private Vector3 velocity;
     private float verticalRotation = 0f;
+    private float currentStamina;
+    private bool isSprinting = false;
 
     private void Awake()
     {
@@ -27,6 +33,8 @@ public class InsectPlayer : MonoBehaviour
         // Lock cursor for first-person control
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        currentStamina = staminaMax; // Initialize stamina
     }
 
     private void Start()
@@ -53,6 +61,8 @@ public class InsectPlayer : MonoBehaviour
 
         HandleMovement();
         HandleLook();
+        HandleSprint();
+        UpdateStamina();
     }
 
     private void HandleMovement()
@@ -70,7 +80,10 @@ public class InsectPlayer : MonoBehaviour
             );
 
             Vector3 moveDirection = transform.TransformDirection(moveInput);
-            velocity = moveDirection * moveSpeed;
+
+            // Use sprint speed if sprinting and has stamina, otherwise use normal speed
+            float currentSpeed = isSprinting && currentStamina > 0 ? sprintSpeed : moveSpeed;
+            velocity = moveDirection * currentSpeed;
 
             if (Input.GetButtonDown("Jump"))
             {
@@ -92,5 +105,38 @@ public class InsectPlayer : MonoBehaviour
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+    }
+
+    void HandleSprint()
+    {
+        // Check if player is trying to sprint (holding Left Shift)
+        bool wantsToSprint = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+        // Can only sprint if has stamina and is moving forward
+        bool canSprint = currentStamina > 0 && Input.GetAxis("Vertical") > 0;
+
+        isSprinting = wantsToSprint && canSprint;
+    }
+
+    void UpdateStamina()
+    {
+        if (isSprinting)
+        {
+            // Drain stamina while sprinting
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            currentStamina = Mathf.Max(currentStamina, 0); // Clamp to minimum 0
+        }
+        else
+        {
+            // Regenerate stamina when not sprinting
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentStamina = Mathf.Min(currentStamina, staminaMax); // Clamp to maximum
+        }
+    }
+
+    // Optional: Add a method to get current stamina for UI display
+    public float GetStaminaNormalized()
+    {
+        return currentStamina / staminaMax;
     }
 }
