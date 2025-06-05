@@ -7,11 +7,13 @@ public class TextSequentialFadeIn : MonoBehaviour
     [Header("Fade In Settings")]
     public float fadeInDuration = 0.5f;
     public float delayBetweenLetters = 0.1f;
-    public float holdDurationAfterFadeIn = 1f; // Timpul de așteptare după ce toate literele sunt vizibile
+    public float holdDurationAfterFadeIn = 1f;
 
     [Header("Disperse Settings")]
     public TextFadeDisperse disperseScript;
     public bool autoStartDisperse = true;
+    public TextFadeDisperse.MovementMode disperseMode = TextFadeDisperse.MovementMode.Random;
+    public Transform disperseTarget; // Only used if mode is Targeted
 
     private TMP_Text _tmpText;
     private float[] _letterTimers;
@@ -23,7 +25,6 @@ public class TextSequentialFadeIn : MonoBehaviour
     {
         _tmpText = GetComponent<TMP_Text>();
 
-        // Dacă nu avem referință la disperseScript, încercăm să o găsim
         if (disperseScript == null)
         {
             disperseScript = GetComponent<TextFadeDisperse>();
@@ -109,12 +110,27 @@ public class TextSequentialFadeIn : MonoBehaviour
     {
         if (autoStartDisperse && disperseScript != null)
         {
+            // Configure disperse mode before starting
+            disperseScript.movementMode = disperseMode;
+            if (disperseMode == TextFadeDisperse.MovementMode.Targeted)
+            {
+                disperseScript.targetPosition = disperseTarget;
+            }
+
             disperseScript.enabled = true;
             disperseScript.RestartAnimation();
         }
     }
 
-    private void SetAllLettersAlpha(byte alpha)
+    public void StartSequence(TextFadeDisperse.MovementMode mode = TextFadeDisperse.MovementMode.Random, Transform target = null)
+    {
+        disperseMode = mode;
+        disperseTarget = target;
+        StartSequence();
+    }
+
+
+private void SetAllLettersAlpha(byte alpha)
     {
         _tmpText.ForceMeshUpdate();
         var textInfo = _tmpText.textInfo;
