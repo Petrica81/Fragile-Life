@@ -4,25 +4,38 @@ using TMPro;
 [RequireComponent(typeof(TMP_Text))]
 public class TextFadeDisperse : MonoBehaviour
 {
+    public enum MovementMode
+    {
+        Random,
+        Targeted
+    }
+
     [Header("Animation Settings")]
     public float duration = 2f;
     public float delayBetweenLetters = 0.05f;
     public float maxDistance = 10f;
     public bool loopAnimation;
+    public MovementMode movementMode = MovementMode.Random;
 
-    [Header("Randomization")]
+    [Header("Random Movement Settings")]
     public float minDirectionAngle = 0f;
     public float maxDirectionAngle = 360f;
     public float minSpeedMultiplier = 0.8f;
     public float maxSpeedMultiplier = 1.2f;
 
+    [Header("Targeted Movement Settings")]
+    public Transform targetPosition;
+    public float targetSpread = 0.5f; // How much letters spread around target
+    public AnimationCurve movementCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
     private TMP_Text _tmpText;
     private TMP_TextInfo _textInfo;
     private float[] _timers;
     private Vector3[][] _originalVertices;
-    private Vector2[] _randomDirections;
+    private Vector2[] _movementDirections;
     private float[] _speedMultipliers;
     private bool _isAnimating;
+    private Vector3[] _targetPositions;
 
     private void Awake()
     {
@@ -32,7 +45,7 @@ public class TextFadeDisperse : MonoBehaviour
 
     private void OnEnable()
     {
-        InitializeRandomValues();
+        InitializeMovementValues();
         ResetAnimation();
         _isAnimating = true;
     }
@@ -73,27 +86,70 @@ public class TextFadeDisperse : MonoBehaviour
         else if (!anyCharacterActive && loopAnimation)
         {
             ResetAnimation();
-            InitializeRandomValues(); // Reinitialize random values when looping
+            InitializeMovementValues();
         }
     }
 
-    private void InitializeRandomValues()
+    private void InitializeMovementValues()
     {
         _tmpText.ForceMeshUpdate();
         _textInfo = _tmpText.textInfo;
 
-        _randomDirections = new Vector2[_textInfo.characterCount];
+        _movementDirections = new Vector2[_textInfo.characterCount];
         _speedMultipliers = new float[_textInfo.characterCount];
+        _targetPositions = new Vector3[_textInfo.characterCount];
 
-        for (int i = 0; i < _textInfo.characterCount; i++)
+        if (movementMode == MovementMode.Random)
         {
-            float randomAngle = Random.Range(minDirectionAngle, maxDirectionAngle);
-            _randomDirections[i] = new Vector2(
-                Mathf.Cos(randomAngle * Mathf.Deg2Rad),
-                Mathf.Sin(randomAngle * Mathf.Deg2Rad)
-            ).normalized;
+            for (int i = 0; i < _textInfo.characterCount; i++)
+            {
+                float randomAngle = Random.Range(minDirectionAngle, maxDirectionAngle);
+                _movementDirections[i] = new Vector2(
+                    Mathf.Cos(randomAngle * Mathf.Deg2Rad),
+                    Mathf.Sin(randomAngle * Mathf.Deg2Rad)
+                ).normalized;
 
-            _speedMultipliers[i] = Random.Range(minSpeedMultiplier, maxSpeedMultiplier);
+                _speedMultipliers[i] = Random.Range(minSpeedMultiplier, maxSpeedMultiplier);
+            }
+        }
+        else // Targeted movement
+        {
+            if (targetPosition == null)
+            {
+                Debug.LogWarning("No target position set for targeted movement. Using random fallback.");
+                movementMode = MovementMode.Random;
+                InitializeMovementValues();
+                return;
+            }
+
+            // Calculate center positions of each character in world space
+            Vector3[] charWorldPositions = new Vector3[_textInfo.characterCount];
+            for (int i = 0; i < _textInfo.characterCount; i++)
+            {
+                ref var charInfo = ref _textInfo.characterInfo[i];
+                if (!charInfo.isVisible || charInfo.character == ' ') continue;
+
+                // Calculate character center in local space
+                Vector3 charCenter = Vector3.zero;
+                for (int j = 0; j < 4; j++)
+                {
+                    charCenter += _originalVertices[charInfo.materialReferenceIndex][charInfo.vertexIndex + j];
+                }
+                charCenter /= 4f;
+
+                // Convert to world space
+                charWorldPositions[i] = transform.TransformPoint(charCenter);
+
+                // Calculate direction to target with some spread
+                Vector3 toTarget = targetPosition.position - charWorldPositions[i];
+                Vector3 spread = Random.insideUnitSphere * targetSpread;
+                _targetPositions[i] = targetPosition.position + spread;
+
+                // Normalized direction (not used directly, but stored for reference)
+                _movementDirections[i] = (_targetPositions[i] - charWorldPositions[i]).normalized;
+
+                _speedMultipliers[i] = Random.Range(minSpeedMultiplier, maxSpeedMultiplier);
+            }
         }
     }
 
@@ -112,9 +168,29 @@ public class TextFadeDisperse : MonoBehaviour
             vertices[vertIndex + j] = _originalVertices[matIndex][vertIndex + j];
         }
 
-        // Apply random direction movement
-        Vector2 randomDir = _randomDirections[charIndex];
-        Vector3 offset = new Vector3(randomDir.x, randomDir.y, 0) * (progress * maxDistance);
+        // Calculate center of character in local space
+        Vector3 charCenter = Vector3.zero;
+        for (int j = 0; j < 4; j++)
+        {
+            charCenter += vertices[vertIndex + j];
+        }
+        charCenter /= 4f;
+
+        // Apply movement based on mode
+        Vector3 offset = Vector3.zero;
+        if (movementMode == MovementMode.Random)
+        {
+            offset = new Vector3(_movementDirections[charIndex].x, _movementDirections[charIndex].y, 0) *
+                    (movementCurve.Evaluate(progress) * maxDistance);
+        }
+        else // Targeted movement
+        {
+            Vector3 worldStart = transform.TransformPoint(charCenter);
+            Vector3 worldEnd = _targetPositions[charIndex];
+            Vector3 worldOffset = Vector3.Lerp(worldStart, worldEnd, movementCurve.Evaluate(progress)) - worldStart;
+            offset = transform.InverseTransformVector(worldOffset);
+        }
+
         byte alpha = (byte)(255 * (1 - progress));
 
         for (int j = 0; j < 4; j++)
@@ -186,7 +262,7 @@ public class TextFadeDisperse : MonoBehaviour
 
     public void RestartAnimation()
     {
-        InitializeRandomValues();
+        InitializeMovementValues();
         ResetAnimation();
         _isAnimating = true;
     }
