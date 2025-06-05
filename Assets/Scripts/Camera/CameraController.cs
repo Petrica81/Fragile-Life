@@ -9,7 +9,8 @@ public class CameraController : MonoBehaviour
     public bool viewLocked = false;
     public Transform player;
     public float switchSmoothness = 5f;
-    public float returnSpeed = 2f; // Viteza de revenire după obstacol
+    public float returnSpeed = 2f;
+    public float autoRotationSpeed = 5f; // Viteza de rotire automată când player-ul se mișcă
 
     [Header("First Person Settings")]
     public Vector3 firstPersonOffset = new Vector3(0, 1.7f, 0.2f);
@@ -19,7 +20,7 @@ public class CameraController : MonoBehaviour
     public float minDistance = 1f;
     public float maxDistance = 5f;
     public float scrollSensitivity = 1f;
-    public float rotationSpeed = 3f;
+    public float manualRotationSpeed = 3f; // Viteza de rotire manuală (click-dreapta)
     public LayerMask collisionMask;
 
     private float currentDistance;
@@ -28,9 +29,12 @@ public class CameraController : MonoBehaviour
     private float xRotation;
     private float yRotation;
     private bool isFirstUnlockFrame = false;
-    private Vector3 targetThirdPersonOffset; // Offset-ul țintă (fără obstacole)
-    private Vector3 currentThirdPersonOffset; // Offset-ul actual (cu ajustări pentru obstacole)
+    private Vector3 targetThirdPersonOffset;
+    private Vector3 currentThirdPersonOffset;
     private bool isAvoidingObstacle = false;
+    private Vector3 lastPlayerPosition;
+    private bool isPlayerMoving = false;
+    private float movementThreshold = 0.1f; // Distanța minimă pentru a detecta mișcarea
 
     void Start()
     {
@@ -40,6 +44,7 @@ public class CameraController : MonoBehaviour
         yRotation = 15f;
         targetThirdPersonOffset = thirdPersonOffset;
         currentThirdPersonOffset = thirdPersonOffset;
+        lastPlayerPosition = player.position;
 
         if (player == null)
         {
@@ -51,6 +56,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         HandleInput();
+        CheckPlayerMovement();
     }
 
     void LateUpdate()
@@ -75,20 +81,34 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    void CheckPlayerMovement()
+    {
+        // Verifică dacă player-ul s-a mișcat semnificativ
+        float distanceMoved = Vector3.Distance(lastPlayerPosition, player.position);
+        isPlayerMoving = distanceMoved > movementThreshold;
+        lastPlayerPosition = player.position;
+    }
+
     void HandleInput()
     {
-        // Rotire cameră (doar în Third Person sau Auto)
+        // Rotire manuală (doar dacă player-ul NU se mișcă sau se ține click-dreapta)
         if ((currentMode == CameraMode.ThirdPerson || currentMode == CameraMode.Auto) && !viewLocked)
         {
-            if (Input.GetMouseButton(1)) // Right-click hold to rotate
+            if (Input.GetMouseButton(1)) // Dacă se ține click-dreapta, rotire manuală are prioritate
             {
-                xRotation += Input.GetAxis("Mouse X") * rotationSpeed;
-                yRotation -= Input.GetAxis("Mouse Y") * rotationSpeed;
+                xRotation += Input.GetAxis("Mouse X") * manualRotationSpeed;
+                yRotation -= Input.GetAxis("Mouse Y") * manualRotationSpeed;
                 yRotation = Mathf.Clamp(yRotation, -20f, 80f);
+            }
+            else if (isPlayerMoving) // Dacă player-ul se mișcă, rotire automată
+            {
+                // Aliniază camera cu direcția player-ului (doar pe axa Y)
+                float targetRotation = player.eulerAngles.y;
+                xRotation = Mathf.LerpAngle(xRotation, targetRotation, autoRotationSpeed * Time.deltaTime);
             }
         }
 
-        // Scroll pentru distanță
+        // Zoom cu scroll wheel
         if ((currentMode == CameraMode.ThirdPerson || currentMode == CameraMode.Auto) && !viewLocked)
         {
             float scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -104,13 +124,13 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        // Comenzi de schimbare mod (ignoră dacă e viewLocked)
+        // Toggle camera mode (ignoră dacă viewLocked)
         if (Input.GetKeyDown(KeyCode.F) && !viewLocked)
         {
             ToggleCameraMode();
         }
 
-        // Lock/unlock view
+        // Toggle view lock
         if (Input.GetKeyDown(KeyCode.L))
         {
             viewLocked = !viewLocked;
@@ -135,13 +155,11 @@ public class CameraController : MonoBehaviour
         Vector3 rayDirection = (player.position + targetThirdPersonOffset) - player.position;
         if (Physics.Raycast(player.position, rayDirection.normalized, out hit, rayDirection.magnitude, collisionMask))
         {
-            // Ajustează offset-ul pentru a evita obstacolul
             currentThirdPersonOffset = hit.point - player.position + hit.normal * 0.2f;
             isAvoidingObstacle = true;
         }
         else if (isAvoidingObstacle)
         {
-            // Revine treptat la offset-ul inițial
             currentThirdPersonOffset = Vector3.Lerp(currentThirdPersonOffset, targetThirdPersonOffset, Time.deltaTime * returnSpeed);
             if (Vector3.Distance(currentThirdPersonOffset, targetThirdPersonOffset) < 0.1f)
             {
@@ -175,7 +193,7 @@ public class CameraController : MonoBehaviour
         if (currentMode == CameraMode.FirstPerson)
         {
             SetCameraMode(CameraMode.ThirdPerson);
-            xRotation = player.eulerAngles.y;
+            xRotation = player.eulerAngles.y; // Resetează la rotirea player-ului
             yRotation = 15f;
         }
         else
@@ -196,7 +214,7 @@ public class CameraController : MonoBehaviour
     public void SetThirdPerson()
     {
         SetCameraMode(CameraMode.ThirdPerson);
-        xRotation = player.eulerAngles.y;
+        xRotation = player.eulerAngles.y; // Resetează la rotirea player-ului
         yRotation = 15f;
     }
     public void SetAutoMode() => SetCameraMode(CameraMode.Auto);
