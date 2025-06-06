@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 51223507}
   - component: {fileID: 51223508}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 108290764}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126651411}
   - component: {fileID: 126651412}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 138312719}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5081370996465499198, guid: 26f838ae56f451d478f19ef0da99221b, type: 3}
       propertyPath: m_fontSize
-      value: 5.9
+      value: 8.85
       objectReference: {fileID: 0}
     - target: {fileID: 5081370996465499198, guid: 26f838ae56f451d478f19ef0da99221b, type: 3}
       propertyPath: m_margin.w
@@ -1313,7 +1313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377127620}
   - component: {fileID: 377127621}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1532,7 +1532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &448234520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1702,19 +1702,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1261775975}
     m_Modifications:
     - target: {fileID: 2627136955502226968, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 117.67
+      value: 32.750854
       objectReference: {fileID: 0}
     - target: {fileID: 2627136955502226968, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: -0.6331217
       objectReference: {fileID: 0}
     - target: {fileID: 2627136955502226968, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.4
+      value: 1.8441176
       objectReference: {fileID: 0}
     - target: {fileID: 2627136955502226968, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2030,8 +2030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c0845dd387af84e8c551d1eb1268cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 1569775800}
-  _player: {fileID: 1208199873}
+  _mainCamera: {fileID: 2119454962}
+  _player: {fileID: 703897358}
   _textComponent: {fileID: 509735000}
   _minDistance: 10
 --- !u!1 &526923803 stripped
@@ -2581,6 +2581,11 @@ Transform:
   - {fileID: 1918402078}
   m_Father: {fileID: 1261775975}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &703897358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2627136955502226968, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+  m_PrefabInstance: {fileID: 483139000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &707210925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8456196562084135694, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
@@ -2592,7 +2597,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1261775975}
     m_Modifications:
     - target: {fileID: 2063349745586390932, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: player
@@ -2608,15 +2613,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.49
+      value: -81.429146
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.02
+      value: 0.28687823
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.29
+      value: -8.845882
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2624,15 +2629,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2846,7 +2851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 779048136}
   - component: {fileID: 779048137}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2997,6 +3002,22 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8679021744482228911, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679021744482229359, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679021744482262287, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679021744482266615, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9025256524710620240, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.09160004
@@ -3044,6 +3065,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3849227742039066089, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2048357312}
+    - targetCorrespondingSourceObject: {fileID: 3849227742039066089, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 703897358}
+    - targetCorrespondingSourceObject: {fileID: 3849227742039066089, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2119454962}
     - targetCorrespondingSourceObject: {fileID: 8679021744482420405, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 108290764}
@@ -3172,7 +3199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841245869}
   - component: {fileID: 841245870}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3671,7 +3698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928024512}
   - component: {fileID: 928024513}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3877,7 +3904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 996178339}
   - component: {fileID: 996178340}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3930,7 +3957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1032957868}
   - component: {fileID: 1032957869}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4030,8 +4057,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c0845dd387af84e8c551d1eb1268cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 1569775800}
-  _player: {fileID: 1208199873}
+  _mainCamera: {fileID: 2119454962}
+  _player: {fileID: 703897358}
   _textComponent: {fileID: 554874816}
   _minDistance: 10
 --- !u!1 &1126507733
@@ -4205,7 +4232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1146784794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StairCloseToSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5034,7 +5061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1439335177}
   - component: {fileID: 1439335178}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5255,7 +5282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1483491725}
   - component: {fileID: 1483491726}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5308,7 +5335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1483702946}
   - component: {fileID: 1483702947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5635,7 +5662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1725750244}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5852,7 +5879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794139938}
   - component: {fileID: 1794139939}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpawnColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6054,7 +6081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1871791285}
   - component: {fileID: 1871791286}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6476,7 +6503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2015940939}
   - component: {fileID: 2015940940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6550,8 +6577,8 @@ Transform:
   m_Children:
   - {fileID: 526923804}
   - {fileID: 1097467870}
-  - {fileID: 509734999}
   - {fileID: 1800432049}
+  - {fileID: 509734999}
   m_Father: {fileID: 1261775975}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2071544837
@@ -6817,6 +6844,11 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!4 &2119454962 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652150784414173056, guid: 1fde147f64f7cc1479562e486dedbb15, type: 3}
+  m_PrefabInstance: {fileID: 708055229}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2128869968
 GameObject:
   m_ObjectHideFlags: 0
@@ -6827,7 +6859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2128869969}
   - component: {fileID: 2128869970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision_stair1 left side (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6927,10 +6959,8 @@ BoxCollider:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 708055229}
   - {fileID: 911129573}
   - {fileID: 787580054}
   - {fileID: 1356237896}
   - {fileID: 361010691}
   - {fileID: 448234524}
-  - {fileID: 483139000}
