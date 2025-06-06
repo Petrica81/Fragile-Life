@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems; //IPointerClickHandler
-using Mono.Cecil.Cil;
 
 public class LevelSelector : MonoBehaviour
 {
