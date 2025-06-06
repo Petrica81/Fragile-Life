@@ -716,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1867972085929716375, guid: 26f838ae56f451d478f19ef0da99221b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.27
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 1867972085929716375, guid: 26f838ae56f451d478f19ef0da99221b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 2119454962}
-  _player: {fileID: 703897358}
+  _player: {fileID: 483139001}
   _textComponent: {fileID: 509735000}
   _minDistance: 10
 --- !u!1 &526923803 stripped
@@ -4058,9 +4058,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 2119454962}
-  _player: {fileID: 703897358}
+  _player: {fileID: 483139001}
   _textComponent: {fileID: 554874816}
-  _minDistance: 10
+  _minDistance: 20
 --- !u!1 &1126507733
 GameObject:
   m_ObjectHideFlags: 0
