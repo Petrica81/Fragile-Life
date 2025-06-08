@@ -6,7 +6,6 @@ public class PlacementRaycast : MonoBehaviour
     [SerializeField] private float _castHeight;
     [SerializeField] private LayerMask _walkableLayer;
 
-    private int _numberOfHits = 1;
     private Vector3 _hitPos = Vector3.zero;
     public RaycastHit hit;
     public Vector3 GetHitPoint()
