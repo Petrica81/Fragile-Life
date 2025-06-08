@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 69769129}
   - component: {fileID: 69769130}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ColliderVerticalFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,6 +270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (19)
@@ -435,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 174835237}
   - component: {fileID: 174835238}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,6 +490,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (17)
@@ -560,6 +568,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (4)
@@ -895,7 +907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234128371}
   - component: {fileID: 234128372}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -946,6 +958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (7)
@@ -1020,6 +1036,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (12)
@@ -1089,6 +1109,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (14)
@@ -1158,6 +1182,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (15)
@@ -1365,7 +1393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397119604}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FRONT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,6 +1427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (2)
@@ -1470,7 +1502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 430406625}
   - component: {fileID: 430406626}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1653,7 +1685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452754659}
   - component: {fileID: 452754660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2073,6 +2105,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (1)
@@ -2144,7 +2180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545639583}
   - component: {fileID: 545639584}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2208,7 +2244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 588509507}
   - component: {fileID: 588509508}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2433,6 +2469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sTri-Plane LARGE
       objectReference: {fileID: 0}
+    - target: {fileID: 8262302736010270107, guid: 3802df0ef51c69848927bdcde4292391, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2446,6 +2486,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (13)
@@ -2521,7 +2565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 694185042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2666,7 +2710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 715809260}
   - component: {fileID: 715809261}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2717,6 +2761,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (18)
@@ -2798,7 +2846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 744500535}
   - component: {fileID: 744500536}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2902,6 +2950,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 625266249048633604, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 625266249048633606, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 625266249048633608, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 625266249048633610, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 625266249048633612, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 625266249048633614, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 692680739023451677, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1100430855335291334, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.9
@@ -2925,6 +3001,18 @@ PrefabInstance:
     - target: {fileID: 1689851883528896848, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 181
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689851883528936816, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689851883528936820, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689851883528936822, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3849227742039066089, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2966,6 +3054,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4580525389932294225, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580525389932294227, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580525389932294231, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4657342440935361073, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.8
@@ -2986,9 +3086,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4940942967245193196, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940942967245193198, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6517301880158531762, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7486290193005241733, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7486290193005241735, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8271423011106347284, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_Name
@@ -3015,6 +3131,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8679021744482266615, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025256524710195312, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025256524710195314, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025256524710195318, guid: f07c920abc7c06742a5d429bc44df95c, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
@@ -3115,7 +3243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 820352286}
   - component: {fileID: 820352287}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3250,6 +3378,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (3)
@@ -3683,6 +3815,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: nQuad-Circle
       objectReference: {fileID: 0}
+    - target: {fileID: 5815382544293627629, guid: 2219690555ddaa043826f61dfc2acc1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3749,6 +3885,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (16)
@@ -3828,6 +3968,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle
@@ -4009,7 +4153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1073073532}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RIGHT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4070,7 +4214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1126507734}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lEFTOVERS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4109,6 +4253,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (6)
@@ -4180,7 +4328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1144830462}
   - component: {fileID: 1144830463}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4270,7 +4418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175953976}
   - component: {fileID: 1175953977}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4361,6 +4509,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (10)
@@ -4440,6 +4592,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (8)
@@ -4647,7 +4803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1291330625}
   - component: {fileID: 1291330626}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4700,7 +4856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1298056110}
   - component: {fileID: 1298056111}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4751,6 +4907,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (21)
@@ -4940,7 +5100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1381906968}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BACK1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5003,7 +5163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417874621}
   - component: {fileID: 1417874622}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5386,6 +5546,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (11)
@@ -5485,7 +5649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1614878499
 Transform:
   m_ObjectHideFlags: 0
@@ -5534,6 +5698,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (20)
@@ -5610,7 +5778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1658479866}
   - component: {fileID: 1658479867}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5699,7 +5867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1738342489}
   - component: {fileID: 1738342490}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5757,7 +5925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1772539686}
   - component: {fileID: 1772539687}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5808,6 +5976,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (5)
@@ -5967,7 +6139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862585815}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LEFT1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6354,7 +6526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1943397325}
   - component: {fileID: 1943397326}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6405,6 +6577,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (9)
@@ -6589,6 +6765,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1614878499}
     m_Modifications:
+    - target: {fileID: 8456196562084135688, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456196562084135691, guid: ac79825ab8114b640a433b1ef6ab6ef8, type: 3}
       propertyPath: m_Name
       value: sQuad-Circle (22)
@@ -6665,7 +6845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2081594196}
   - component: {fileID: 2081594197}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6912,7 +7092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2139116423}
   - component: {fileID: 2139116424}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
