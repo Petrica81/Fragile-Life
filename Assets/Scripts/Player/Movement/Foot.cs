@@ -11,7 +11,7 @@ public class Foot : MonoBehaviour
     public Transform _footPlacementTarget;
     [SerializeField] private Transform _bodyTransform;
     [SerializeField] private float _stepSize;
-    [SerializeField] private float _stepSpeed;
+    [SerializeField][Tooltip("Multiplicator viteza pas comparativ cu viteza corp.")] private float _stepSpeed;
     [SerializeField] private float _stepHeight;
     [SerializeField] private float _minDistanceTolerance;
     [SerializeField] private Foot _opposingFoot;
@@ -58,7 +58,7 @@ public class Foot : MonoBehaviour
     {
         if (_currentPhase != StepPhases.RESTING)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _stepSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _bodyMovement._speed * _stepSpeed * Time.deltaTime);
         }
     }
 
