@@ -204,11 +204,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _footPlacementTarget: {fileID: 765530526120344599}
   _bodyTransform: {fileID: 8002692282769414124}
-  _stepSize: 1
-  _stepSpeed: 15
+  _stepSize: 0.5
+  _stepSpeed: 3
   _stepHeight: 0.3
   _minDistanceTolerance: 0.3
   _opposingFoot: {fileID: 3541589397881684816}
+  _debugDraw: 1
   _currentPhase: 1
   OnPlantedChange:
     m_PersistentCalls:
@@ -1105,10 +1106,11 @@ MonoBehaviour:
   _footPlacementTarget: {fileID: 7085027465838710545}
   _bodyTransform: {fileID: 8002692282769414124}
   _stepSize: 0.5
-  _stepSpeed: 15
+  _stepSpeed: 3
   _stepHeight: 0.3
-  _minDistanceTolerance: 0.3
+  _minDistanceTolerance: 0.2
   _opposingFoot: {fileID: 2561126997499502270}
+  _debugDraw: 1
   _currentPhase: 1
   OnPlantedChange:
     m_PersistentCalls:
@@ -2456,9 +2458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1176b9f80798d844b2f7db05d5f6bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardSpeed: 4
+  _baseSpeed: 4
+  _speed: 0
+  _sprintSpeed: 8
   _turnSpeed: 100
-  _flipSpeed: 2
   _heightOffset: 1
   _legs:
   - {fileID: 7643956001292751174}
@@ -2766,7 +2769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3961199027323430608}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0059498255, y: -0, z: -0, w: 0.99998236}
+  m_LocalRotation: {x: -0.0059516304, y: 0, z: 0, w: 0.9999823}
   m_LocalPosition: {x: 3.49, y: 0.22, z: -2.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3045,11 +3048,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _footPlacementTarget: {fileID: 2573090924063229499}
   _bodyTransform: {fileID: 8002692282769414124}
-  _stepSize: 1
-  _stepSpeed: 15
+  _stepSize: 0.5
+  _stepSpeed: 3
   _stepHeight: 0.3
   _minDistanceTolerance: 0.3
   _opposingFoot: {fileID: 7912928070815364051}
+  _debugDraw: 1
   _currentPhase: 1
   OnPlantedChange:
     m_PersistentCalls:
@@ -3364,8 +3368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4b2ac228aec6b47a65bb87c774e6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castDistance: 1
-  _castHeight: 2
+  _castDistance: 2
+  _castHeight: 1
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -4007,8 +4011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4b2ac228aec6b47a65bb87c774e6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castDistance: 1
-  _castHeight: 2
+  _castDistance: 2
+  _castHeight: 1
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -4276,11 +4280,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _footPlacementTarget: {fileID: 7985161330328826471}
   _bodyTransform: {fileID: 8002692282769414124}
-  _stepSize: 1
-  _stepSpeed: 25
+  _stepSize: 0.5
+  _stepSpeed: 3
   _stepHeight: 0.3
   _minDistanceTolerance: 0.3
   _opposingFoot: {fileID: 623964846819619791}
+  _debugDraw: 1
   _currentPhase: 1
   OnPlantedChange:
     m_PersistentCalls:
@@ -5007,7 +5012,7 @@ Transform:
   m_GameObject: {fileID: 6494444409418112070}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5162,10 +5167,11 @@ MonoBehaviour:
   _footPlacementTarget: {fileID: 8112273584919072872}
   _bodyTransform: {fileID: 8002692282769414124}
   _stepSize: 0.5
-  _stepSpeed: 15
+  _stepSpeed: 3
   _stepHeight: 0.3
-  _minDistanceTolerance: 0.3
+  _minDistanceTolerance: 0.2
   _opposingFoot: {fileID: 7368584808187967888}
+  _debugDraw: 1
   _currentPhase: 1
   OnPlantedChange:
     m_PersistentCalls:
@@ -5602,8 +5608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4b2ac228aec6b47a65bb87c774e6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castDistance: 1
-  _castHeight: 2
+  _castDistance: 2
+  _castHeight: 1
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -5939,8 +5945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4b2ac228aec6b47a65bb87c774e6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castDistance: 1
-  _castHeight: 2
+  _castDistance: 2
+  _castHeight: 1
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -6052,8 +6058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4b2ac228aec6b47a65bb87c774e6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castDistance: 1
-  _castHeight: 2
+  _castDistance: 2
+  _castHeight: 1
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -6593,11 +6599,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _footPlacementTarget: {fileID: 3719206115188307617}
   _bodyTransform: {fileID: 8002692282769414124}
-  _stepSize: 1
-  _stepSpeed: 25
+  _stepSize: 0.5
+  _stepSpeed: 3
   _stepHeight: 0.3
   _minDistanceTolerance: 0.3
   _opposingFoot: {fileID: 244660583682117378}
+  _debugDraw: 1
   _currentPhase: 1
   OnPlantedChange:
     m_PersistentCalls:
@@ -6679,8 +6686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4b2ac228aec6b47a65bb87c774e6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castDistance: 1
-  _castHeight: 2
+  _castDistance: 2
+  _castHeight: 1
   _walkableLayer:
     serializedVersion: 2
     m_Bits: 8

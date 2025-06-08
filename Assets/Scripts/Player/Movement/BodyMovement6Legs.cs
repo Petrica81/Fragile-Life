@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,8 +13,8 @@ public class BodyMovement6Legs : MonoBehaviour
     private float _sprintSpeed;
     [SerializeField][Tooltip("Viteza de rotatie pe axa Y.")]
     private float _turnSpeed;
-    [SerializeField][Tooltip("Viteza de rotatie pe axa X.")]
-    private float _flipSpeed = 1f;
+    //[Tooltip("Viteza de rotatie pe axa X.")]
+    private float _flipSpeed;
     [SerializeField][Tooltip("Inaltimea in plus adaugata fata de picioare.")]
     private float _heightOffset;
     [SerializeField][Tooltip("Picioarele in ordine.\n[din fata in spate]\n[de la stanga la dreapta]")]
@@ -67,10 +68,13 @@ public class BodyMovement6Legs : MonoBehaviour
         {
             _targetRotation = _startRotation;
         }
-
+        _flipSpeed = _speed * 0.75f;
         _input = new Vector2(horizontal, vertical);
 
         //raycast pentru a verifica daca se poate merge in fata
+
+        _targetRotation = transform.rotation;
+
         RaycastHit hit_fu = CheckBetween(_above, _forward);
         RaycastHit hit_fb = CheckBetween(_forward, _below);
         if (hit_fu.collider && _input.y > 0.1f && Vector3.Distance(hit_fu.point, _lastHit) > 0.2f)
@@ -92,6 +96,7 @@ public class BodyMovement6Legs : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         transform.position = Vector3.MoveTowards(transform.position, _targetLocation, _speed * Time.fixedDeltaTime);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _flipSpeed * Time.fixedDeltaTime);

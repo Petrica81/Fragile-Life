@@ -1,72 +1,101 @@
+// Modified version with improvements
 using UnityEngine;
 using UnityEngine.Events;
+
 public enum StepPhases
 {
     RESTING,
     MOVING_TO_TARGET,
     MOVING_TO_LIFT
 }
+
 public class Foot : MonoBehaviour
 {
+    [Header("Settings")]
     public Transform _footPlacementTarget;
     [SerializeField] private Transform _bodyTransform;
-    [SerializeField] private float _stepSize;
-    [SerializeField][Tooltip("Multiplicator viteza pas comparativ cu viteza corp.")] private float _stepSpeed;
-    [SerializeField] private float _stepHeight;
-    [SerializeField] private float _minDistanceTolerance;
+    [SerializeField] private float _stepSize = 0.5f;
+    [SerializeField] private float _stepSpeed = 5f;
+    [SerializeField] private float _stepHeight = 0.3f;
+    [SerializeField] private float _minDistanceTolerance = 0.01f;
     [SerializeField] private Foot _opposingFoot;
 
+    [Header("Debug")]
+    [SerializeField] private bool _debugDraw = true;
+
     private PlacementRaycast _placementRaycast;
-    private Vector3 _targetPosition = Vector3.zero;
+    private Vector3 _targetPosition;
+    private BodyMovement6Legs _bodyMovement;
 
     public StepPhases _currentPhase = StepPhases.MOVING_TO_TARGET;
     public UnityEvent<bool> OnPlantedChange;
-    private BodyMovement6Legs _bodyMovement;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _placementRaycast = _footPlacementTarget.GetComponent<PlacementRaycast>();
         _targetPosition = _footPlacementTarget.position;
         _bodyMovement = _bodyTransform.GetComponent<BodyMovement6Legs>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Vector3.Distance(transform.position, _footPlacementTarget.position) > _stepSize && _opposingFoot._currentPhase == StepPhases.RESTING)
+        UpdateStepLogic();
+
+        if (_bodyMovement._input != Vector2.zero)
+            Move();
+
+        if (_debugDraw)
+        {
+            Debug.DrawLine(transform.position, _targetPosition, Color.red);
+            Debug.DrawLine(_targetPosition, _targetPosition + Vector3.up * 0.1f, Color.green);
+        }
+    }
+
+    private void UpdateStepLogic()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, _footPlacementTarget.position);
+        bool opposingFootReady = _opposingFoot == null || _opposingFoot._currentPhase == StepPhases.RESTING;
+
+        // Initiate step if needed
+        if (distanceToTarget > _stepSize && opposingFootReady && _currentPhase == StepPhases.RESTING)
         {
             _targetPosition = GetLiftPosition();
             _currentPhase = StepPhases.MOVING_TO_LIFT;
             OnPlantedChange?.Invoke(false);
         }
-        if (Vector3.Distance(transform.position, _targetPosition) < _minDistanceTolerance && _currentPhase == StepPhases.MOVING_TO_LIFT)
+
+        // Check if reached lift position
+        if (_currentPhase == StepPhases.MOVING_TO_LIFT &&
+            Vector3.Distance(transform.position, _targetPosition) < _minDistanceTolerance)
         {
             _targetPosition = _placementRaycast.GetHitPoint();
             _currentPhase = StepPhases.MOVING_TO_TARGET;
         }
-        if (Vector3.Distance(transform.position, _targetPosition) < _minDistanceTolerance && _currentPhase == StepPhases.MOVING_TO_TARGET)
+
+        // Check if reached target position
+        if (_currentPhase == StepPhases.MOVING_TO_TARGET &&
+            Vector3.Distance(transform.position, _targetPosition) < _minDistanceTolerance)
         {
             _currentPhase = StepPhases.RESTING;
             OnPlantedChange?.Invoke(true);
         }
-        if (_bodyMovement._input != Vector2.zero)
-            Move();
     }
 
     private void Move()
     {
         if (_currentPhase != StepPhases.RESTING)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _bodyMovement._speed * _stepSpeed * Time.deltaTime);
+            // Use smoother movement with potential acceleration
+            float step = _bodyMovement._speed * _stepSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
         }
     }
 
     private Vector3 GetLiftPosition()
     {
-        Vector3 midPointDistance = (_footPlacementTarget.position - transform.position) / 2;
-        Vector3 midPoint = transform.position + midPointDistance;
-        Vector3 liftPoint = midPoint + (_bodyTransform.up * _stepHeight);
-        return liftPoint;
+        Vector3 direction = (_footPlacementTarget.position - transform.position).normalized;
+        float halfDistance = Vector3.Distance(transform.position, _footPlacementTarget.position) * 0.5f;
+        Vector3 midPoint = transform.position + (direction * halfDistance);
+        return midPoint + (_bodyTransform.up * _stepHeight);
     }
 }
