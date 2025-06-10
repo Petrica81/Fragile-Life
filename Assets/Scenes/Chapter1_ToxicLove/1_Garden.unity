@@ -1913,9 +1913,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1261775975}
     m_Modifications:
+    - target: {fileID: 244660583682117378, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _stepSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 623964846819619791, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _stepSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1349754082364287438, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
       propertyPath: _sprintSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561126997499502270, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _stepSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561126997499502270, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _minDistanceTolerance
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2627136955502226968, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1957,9 +1973,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3541589397881684816, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _stepSize
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3541589397881684816, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _minDistanceTolerance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3961199027323430608, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
       propertyPath: m_Name
       value: Player Pref
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368584808187967888, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _stepSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368584808187967888, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _minDistanceTolerance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912928070815364051, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _stepSize
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912928070815364051, guid: c905ada8814f4a042bc1d38a08592eb5, type: 3}
+      propertyPath: _minDistanceTolerance
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4144,10 +4184,6 @@ PrefabInstance:
     - target: {fileID: 5815382544293627628, guid: 2219690555ddaa043826f61dfc2acc1e, type: 3}
       propertyPath: m_Name
       value: spawn_iarba
-      objectReference: {fileID: 0}
-    - target: {fileID: 5815382544293627629, guid: 2219690555ddaa043826f61dfc2acc1e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5815382544293627629, guid: 2219690555ddaa043826f61dfc2acc1e, type: 3}
       propertyPath: m_Enabled
@@ -7568,3 +7604,5 @@ SceneRoots:
   - {fileID: 448234524}
   - {fileID: 289808512}
   - {fileID: 733449969}
+  - {fileID: 879891166}
+  - {fileID: 3207933881637627100}
