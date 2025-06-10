@@ -5672,7 +5672,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Let\u2019s see the world through smaller eyes."
+  m_text: "Le\u2019s sete the world through smaller eyes."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a864a668e9144e24ebdd2350ee847b18, type: 2}
   m_sharedMaterial: {fileID: 2868230282361665303, guid: a864a668e9144e24ebdd2350ee847b18, type: 2}
