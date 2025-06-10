@@ -1,147 +1,93 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
-public class PauseManager : MonoBehaviour
+public class SettingsMainMenu : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject optionsMenu;
+    [Header("Audio Settings")]
+    public Slider volumeSlider;
+    public AudioMixer audioMixer;
+    public string volumeParameter = "MasterVolume";
 
-    [Header("Options Controls")]
-    [SerializeField] private Slider volumeSlider;
-    [SerializeField] private Button fullscreenButton;
-    [SerializeField] private TMP_Text fullscreenText;
+    [Header("Display Settings")]
+    public Toggle fullscreenToggle;
+    public TextMeshProUGUI fullscreenStatusText;
 
-    private bool isPaused = false;
-    private float previousTimeScale;
-
-    void Start()
+    void OnEnable()
     {
-        InitializeUI();
+        InitializeVolumeControls();
+        InitializeFullscreenControls();
     }
 
-    private void InitializeUI()
+    private void InitializeVolumeControls()
     {
-        // Initialize menus
-        pauseMenu.SetActive(false);
-        optionsMenu.SetActive(false);
-
-        // Setup volume control
-        if (volumeSlider != null)
+        if (volumeSlider != null && audioMixer != null)
         {
-            volumeSlider.value = PlayerPrefs.GetFloat("SavedVolume", 0.75f);
+            volumeSlider.onValueChanged.RemoveAllListeners();
             volumeSlider.onValueChanged.AddListener(SetVolume);
-            SetVolume(volumeSlider.value);
-        }
-
-        // Setup fullscreen control
-        if (fullscreenButton != null && fullscreenText != null)
-        {
-            bool savedFullscreen = PlayerPrefs.GetInt("FullscreenMode", Screen.fullScreen ? 1 : 0) == 1;
-            UpdateFullscreenText(savedFullscreen);
-            fullscreenButton.onClick.AddListener(ToggleFullscreen);
-
-            Debug.Log($"PauseManager: Initialized fullscreen - Current: {Screen.fullScreen}, Saved: {savedFullscreen}");
-        }
-        else
-        {
-            Debug.LogError("PauseManager: Fullscreen UI references missing!");
+            LoadVolume();
         }
     }
 
-    public void ToggleFullscreen()
+    private void InitializeFullscreenControls()
     {
-        bool newFullscreenState = !Screen.fullScreen;
+        if (fullscreenToggle == null || fullscreenStatusText == null)
+        {
+            Debug.LogError("Fullscreen UI references missing!");
+            return;
+        }
 
-        // Apply the new state
-        Screen.fullScreen = newFullscreenState;
+        // Load saved preference or use current screen state
+        bool savedFullscreen = PlayerPrefs.GetInt("FullscreenMode", Screen.fullScreen ? 1 : 0) == 1;
 
-        // Update UI and save preference
-        UpdateFullscreenText(newFullscreenState);
-        PlayerPrefs.SetInt("FullscreenMode", newFullscreenState ? 1 : 0);
+        // Initialize UI elements
+        fullscreenToggle.SetIsOnWithoutNotify(savedFullscreen);
+        UpdateFullscreenText(savedFullscreen);
 
-        Debug.Log($"PauseManager: Fullscreen toggled to {newFullscreenState}");
+        // Add listener after initialization
+        fullscreenToggle.onValueChanged.AddListener(OnFullscreenToggleChanged);
 
-        // Sometimes the change doesn't apply immediately - add a fallback check
-        StartCoroutine(VerifyFullscreenChange(newFullscreenState));
+        Debug.Log($"Initialized fullscreen: {savedFullscreen}");
     }
 
-    private IEnumerator VerifyFullscreenChange(bool expectedState)
+    private void OnFullscreenToggleChanged(bool newValue)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        // Apply the new fullscreen state
+        SetFullscreen(newValue);
+    }
 
-        if (Screen.fullScreen != expectedState)
-        {
-            Debug.LogWarning($"PauseManager: Fullscreen mismatch! Expected: {expectedState}, Actual: {Screen.fullScreen}");
-            // Try applying again
-            Screen.fullScreen = expectedState;
-            UpdateFullscreenText(expectedState);
-        }
+    private void SetFullscreen(bool fullscreen)
+    {
+        // Apply to screen
+        Screen.fullScreen = fullscreen;
+
+        // Update UI
+        fullscreenToggle.SetIsOnWithoutNotify(fullscreen);
+        UpdateFullscreenText(fullscreen);
+
+        // Save preference
+        PlayerPrefs.SetInt("FullscreenMode", fullscreen ? 1 : 0);
+
+        Debug.Log($"Fullscreen set to: {fullscreen}");
     }
 
     private void UpdateFullscreenText(bool currentState)
     {
-        fullscreenText.text = currentState ? "Fullscreen Mode: ON" : "Fullscreen Mode: OFF";
+        fullscreenStatusText.text = currentState ? "Fullscreen: ON" : "Fullscreen: OFF";
     }
 
     private void SetVolume(float volume)
     {
-        AudioListener.volume = volume;
+        float dBValue = Mathf.Lerp(-80f, 0f, Mathf.Pow(volume, 0.25f));
+        audioMixer.SetFloat(volumeParameter, dBValue);
         PlayerPrefs.SetFloat("SavedVolume", volume);
     }
 
-    // ... (keep all other methods like TogglePause, OpenOptions, etc. the same)
-    void Update()
+    private void LoadVolume()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (optionsMenu.activeSelf)
-            {
-                CloseOptions();
-            }
-            else
-            {
-                TogglePause();
-            }
-        }
-    }
-
-    public void TogglePause()
-    {
-        isPaused = !isPaused;
-        Time.timeScale = isPaused ? 0f : 1f;
-        pauseMenu.SetActive(isPaused);
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPaused;
-
-        if (!isPaused)
-        {
-            optionsMenu.SetActive(false);
-        }
-    }
-
-    public void OpenOptions()
-    {
-        pauseMenu.SetActive(false);
-        optionsMenu.SetActive(true);
-    }
-
-    public void CloseOptions()
-    {
-        optionsMenu.SetActive(false);
-        pauseMenu.SetActive(true);
-    }
-
-    public void ResumeGame()
-    {
-        TogglePause();
-    }
-
-    public void QuitToMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        float savedVolume = PlayerPrefs.GetFloat("SavedVolume", 0.75f);
+        volumeSlider.value = savedVolume;
+        SetVolume(savedVolume);
     }
 }
