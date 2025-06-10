@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Art Assets/Butterfly (Animated)/Demo Scene/Demo_Butterfly.unity
+    path: Assets/Scenes/Chapter1_ToxicLove/0_MainMenu.unity
     guid: 880ce0214a3984347830159027a6646e
   - enabled: 1
     path: Assets/Scenes/Chapter1_ToxicLove/1_Garden.unity
