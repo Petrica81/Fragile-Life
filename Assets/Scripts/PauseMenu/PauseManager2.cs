@@ -1,6 +1,9 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq; // Needed for FirstOrDefault() ?
 
 public class PauseManager2 : MonoBehaviour
 {
@@ -97,7 +100,26 @@ public class PauseManager2 : MonoBehaviour
     // Options functions
     private void SetVolume(float volume)
     {
+        // Save to PlayerPrefs
+        PlayerPrefs.SetFloat("SavedVolume", volume);
+
+        // Apply directly to audio system
         AudioListener.volume = volume;
+
+        // Try to affect the audio mixer
+        AudioMixer mixer = Resources.FindObjectsOfTypeAll<AudioMixer>().FirstOrDefault();
+        if (mixer != null)
+        {
+            float dBValue = Mathf.Lerp(-80f, 0f, Mathf.Pow(volume, 0.25f));
+            mixer.SetFloat("MasterVolume", dBValue);
+        }
+
+        // If we find SettingsMainMenu, update its slider to match
+        SettingsMainMenu settings = FindObjectOfType<SettingsMainMenu>();
+        if (settings != null && settings.volumeSlider != null)
+        {
+            settings.volumeSlider.SetValueWithoutNotify(volume);
+        }
     }
 
     private void SetFullscreen(bool isFullscreen)

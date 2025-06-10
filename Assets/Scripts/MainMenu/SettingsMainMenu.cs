@@ -14,6 +14,13 @@ public class SettingsMainMenu : MonoBehaviour
     public Toggle fullscreenToggle;
     public TextMeshProUGUI fullscreenStatusText;
 
+    [Header("Music")]
+    public AudioSource backgroundMusic; // Assign in Inspector
+
+    public AudioSource GetBackgroundMusic()
+    {
+        return backgroundMusic;
+    }
     void OnEnable()
     {
         InitializeVolumeControls();
@@ -77,11 +84,17 @@ public class SettingsMainMenu : MonoBehaviour
         fullscreenStatusText.text = currentState ? "Fullscreen: ON" : "Fullscreen: OFF";
     }
 
-    private void SetVolume(float volume)
+    public void SetVolume(float volume)
     {
         float dBValue = Mathf.Lerp(-80f, 0f, Mathf.Pow(volume, 0.25f));
         audioMixer.SetFloat(volumeParameter, dBValue);
         PlayerPrefs.SetFloat("SavedVolume", volume);
+
+        // Update music manager volume too
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.SetVolume(volume);
+        }
     }
 
     private void LoadVolume()
