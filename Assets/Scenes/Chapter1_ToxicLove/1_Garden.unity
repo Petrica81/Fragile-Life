@@ -1262,7 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6647110582569221369, guid: d2305c739d12aad4b88a42f454717be7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7604590955901530715, guid: d2305c739d12aad4b88a42f454717be7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2080,7 +2080,7 @@ MonoBehaviour:
   finalFadeOutDuration: 2
   blackPanel: {fileID: 1870159456}
   voiceOverClips:
-  - {fileID: 8300000, guid: bc33d009a46965e409b4f0c3a0e0792e, type: 3}
+  - {fileID: 8300000, guid: b84ace0d172cada4cb552d230a0b4a1d, type: 3}
   - {fileID: 8300000, guid: 67fcad67d7cf7ad43abe2cd0fac0b12b, type: 3}
   - {fileID: 8300000, guid: 541b0256e5be20c4a9a33ec40b9613ac, type: 3}
   audioSource: {fileID: 448234525}
