@@ -27,6 +27,7 @@ public class BodyMovement6Legs : MonoBehaviour
     [SerializeField] private float _desiredGroundClearance;
     [SerializeField] private float _castSphereRadius;
 
+    private Vector3 _externalForce;
     private Rigidbody _rigidbody;
     public Vector2 _input;
     private bool _grounded = true;
@@ -38,6 +39,8 @@ public class BodyMovement6Legs : MonoBehaviour
     private Vector3 _forward;
     private Vector3 _lastHit = Vector3.zero;
     private Quaternion _startRotation;
+    [HideInInspector]
+    public bool _moved = false;
 
     private void Start()
     {
@@ -45,6 +48,7 @@ public class BodyMovement6Legs : MonoBehaviour
         _targetLocation = transform.position;
         _startRotation = transform.rotation;
         _speed = _baseSpeed;
+        _externalForce = Vector3.zero;
     }
     private void Update()
     {
@@ -75,6 +79,7 @@ public class BodyMovement6Legs : MonoBehaviour
 
         _targetRotation = transform.rotation;
 
+        Vector3 lastTargetLocation = _targetLocation;
         RaycastHit hit_fu = CheckBetween(_above, _forward);
         RaycastHit hit_fb = CheckBetween(_forward, _below);
         if (hit_fu.collider && _input.y > 0.1f && Vector3.Distance(hit_fu.point, _lastHit) > 0.2f)
@@ -90,6 +95,16 @@ public class BodyMovement6Legs : MonoBehaviour
             _targetRotation = Quaternion.FromToRotation(transform.up, hit_fb.normal) * transform.rotation;
         }
 
+        _targetLocation += _externalForce;
+        if (lastTargetLocation != _targetLocation)
+        {
+            _moved = true;
+        }
+        else
+        {
+            _moved = false;
+        }
+
         VerifyOnTerrain();
 
     }
@@ -98,6 +113,8 @@ public class BodyMovement6Legs : MonoBehaviour
     {
 
         transform.position = Vector3.MoveTowards(transform.position, _targetLocation, _speed * Time.fixedDeltaTime);
+
+        _externalForce = Vector3.zero;
 
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _flipSpeed * Time.fixedDeltaTime);
 
@@ -165,7 +182,10 @@ public class BodyMovement6Legs : MonoBehaviour
         return hit;
     }
 
-
+    public void ApplyExternalForce(Vector3 force)
+    {
+        _externalForce += force;
+    }
 }
 
 

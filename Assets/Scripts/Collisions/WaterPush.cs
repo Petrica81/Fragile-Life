@@ -1,16 +1,26 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
+
 
 public class WaterPush : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float pushForce = 10f; 
+    private WaterSurface _waterSurface;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        _waterSurface = GetComponentInParent<WaterSurface>();
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        BodyMovement6Legs bodyMovement;
+        other.TryGetComponent<BodyMovement6Legs>(out bodyMovement);
+
+        if (bodyMovement != null)
+        {
+            Vector3 push = this.transform.forward * _waterSurface.largeCurrentSpeedValue * pushForce * Time.deltaTime;
+
+            bodyMovement.ApplyExternalForce(push);
+        }
     }
 }
