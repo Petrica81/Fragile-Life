@@ -41,7 +41,7 @@ public class Foot : MonoBehaviour
     {
         UpdateStepLogic();
 
-        if (_bodyMovement._input != Vector2.zero)
+        if (_bodyMovement._moved)
             Move();
 
         if (_debugDraw)
