@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapter1_ToxicLove/1_Garden.unity
     guid: 6c2e3eac610452c4d9a5dc1bd8a80c37
   - enabled: 0
-    path: Assets/OutdoorsScene.unity
+    path: Assets/Others/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
   - enabled: 0
     path: Assets/Scenes/Chapter1_ToxicLove/others/3_Garden_Smooth.unity
