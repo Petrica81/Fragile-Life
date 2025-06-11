@@ -4,6 +4,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Linq; // Needed for FirstOrDefault() ?
+using UnityEngine.EventSystems;
 
 public class PauseManager2 : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class PauseManager2 : MonoBehaviour
     [Header("Options Controls")]
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Toggle fullscreenToggle;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip buttonHoverSound;
+    [SerializeField] private AudioClip buttonClickSound;
+    [SerializeField] private AudioSource uiAudioSource;
 
     private bool isPaused = false;
     private float previousTimeScale; // Store previous time scale
@@ -31,6 +37,9 @@ public class PauseManager2 : MonoBehaviour
         // Add listeners
         volumeSlider.onValueChanged.AddListener(SetVolume);
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+
+        // Setup button sounds
+        SetupButtonSounds();
     }
 
     void Update()
@@ -47,6 +56,47 @@ public class PauseManager2 : MonoBehaviour
             }
         }
     }
+
+    void SetupButtonSounds()
+    {
+        // Get all buttons in the scene
+        Button[] buttons = FindObjectsOfType<Button>(true); // Include inactive buttons
+
+        foreach (Button button in buttons)
+        {
+            // Add hover sound
+            EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>() ??
+                                   button.gameObject.AddComponent<EventTrigger>();
+
+            // Pointer Enter event for hover sound
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerEnter
+            };
+            pointerEnterEntry.callback.AddListener((data) => { PlayHoverSound(); });
+            trigger.triggers.Add(pointerEnterEntry);
+
+            // Click sound is handled by the button's onClick event
+            button.onClick.AddListener(PlayClickSound);
+        }
+    }
+
+    public void PlayClickSound()
+    {
+        if (buttonClickSound != null && uiAudioSource != null)
+        {
+            uiAudioSource.PlayOneShot(buttonClickSound);
+        }
+    }
+
+    public void PlayHoverSound()
+    {
+        if (buttonHoverSound != null && uiAudioSource != null)
+        {
+            uiAudioSource.PlayOneShot(buttonHoverSound);
+        }
+    }
+    
 
     public void TogglePause()
     {
