@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.UI; // Required for Image/Panel fade
+using UnityEngine.UI;
 
 public class IntroAnimation : MonoBehaviour
 {
@@ -13,10 +13,22 @@ public class IntroAnimation : MonoBehaviour
     public float finalFadeOutDuration = 2f;
 
     [Header("Panel Reference")]
-    public Image blackPanel; // Assign your black background panel here
+    public Image blackPanel;
+
+    [Header("Audio Settings")]
+    public AudioClip[] voiceOverClips; // Assign voice-over clips for each line
+    public AudioSource audioSource; // Assign an AudioSource component
+    [Range(0, 1)] public float voiceOverVolume = 0.5f;
 
     void Start()
     {
+        // Initialize audio source if not assigned
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.volume = voiceOverVolume;
+        }
+
         InitializeAlpha();
         StartCoroutine(PlaySequence());
     }
@@ -30,7 +42,6 @@ public class IntroAnimation : MonoBehaviour
             tmp.color = color;
         }
 
-        // Ensure panel is initially visible
         blackPanel.color = Color.black;
     }
 
@@ -38,13 +49,17 @@ public class IntroAnimation : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f); // Initial pause
 
-        // Play all text sequences
         for (int i = 0; i < tmpLines.Length; i++)
         {
+            // Play voice-over if available
+            if (voiceOverClips != null && i < voiceOverClips.Length && voiceOverClips[i] != null)
+            {
+                audioSource.PlayOneShot(voiceOverClips[i]);
+            }
+
             yield return StartCoroutine(FadeTMP(tmpLines[i], 0, 1, fadeInDurations[i]));
             yield return new WaitForSeconds(displayDurations[i]);
 
-            // Don't fade out the last line yet
             if (i < tmpLines.Length - 1)
             {
                 yield return StartCoroutine(FadeTMP(tmpLines[i], 1, 0, fadeInDurations[i]));
@@ -52,11 +67,9 @@ public class IntroAnimation : MonoBehaviour
             }
         }
 
-        // Simultaneous fade-out of last text AND panel
         StartCoroutine(FadeTMP(tmpLines[tmpLines.Length - 1], 1, 0, finalFadeOutDuration));
         StartCoroutine(FadePanel(blackPanel, 1, 0, finalFadeOutDuration));
 
-        // Disable elements when invisible
         yield return new WaitForSeconds(finalFadeOutDuration);
         blackPanel.gameObject.SetActive(false);
     }
