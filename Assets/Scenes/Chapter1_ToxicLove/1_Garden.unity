@@ -1744,9 +1744,9 @@ MonoBehaviour:
   finalFadeOutDuration: 2
   blackPanel: {fileID: 1870159456}
   voiceOverClips:
-  - {fileID: 8300000, guid: 35d3bd18ba1ea524ba9065eb2d1931d2, type: 3}
-  - {fileID: 8300000, guid: 9b19c8755e7daf44cb7e4039eef54a8c, type: 3}
-  - {fileID: 8300000, guid: 7e128cadc90ee03479ecafd04ecb91af, type: 3}
+  - {fileID: 8300000, guid: bc33d009a46965e409b4f0c3a0e0792e, type: 3}
+  - {fileID: 8300000, guid: 67fcad67d7cf7ad43abe2cd0fac0b12b, type: 3}
+  - {fileID: 8300000, guid: 541b0256e5be20c4a9a33ec40b9613ac, type: 3}
   audioSource: {fileID: 448234525}
   voiceOverVolume: 0.5
 --- !u!114 &448234521
@@ -1845,7 +1845,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2382,7 +2382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9019ffc3d2ce204d98630557b55138f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voiceOverClip: {fileID: 8300000, guid: dd25320b1407dc741aecad2e07edbdbb, type: 3}
+  voiceOverClip: {fileID: 8300000, guid: c4b517e60e2282142bbe2f420be5b00e, type: 3}
   pitchVariation: 0.1
 --- !u!82 &509735004
 AudioSource:
@@ -4619,7 +4619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9019ffc3d2ce204d98630557b55138f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voiceOverClip: {fileID: 8300000, guid: 6207ed88cff5a6d47b1eb598b60ad940, type: 3}
+  voiceOverClip: {fileID: 8300000, guid: bdda0476de41e7144ac3691f50d67a34, type: 3}
   pitchVariation: 0.1
 --- !u!82 &1097467873
 AudioSource:
