@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapter1_ToxicLove/0_MainMenu.unity
     guid: 880ce0214a3984347830159027a6646e
   - enabled: 1
+    path: Assets/Scenes/Chapter1_ToxicLove/1_Garden with mirror.unity
+    guid: 34536ea360d6d6841a0c894ee8732190
+  - enabled: 0
     path: Assets/Scenes/Chapter1_ToxicLove/1_Garden.unity
     guid: 6c2e3eac610452c4d9a5dc1bd8a80c37
   - enabled: 0

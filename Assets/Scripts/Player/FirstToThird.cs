@@ -1,8 +1,12 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 [RequireComponent(typeof(BoxCollider))]
 public class FirstToThird : MonoBehaviour
 {
+    [SerializeField]
+    private TMP_Text _text;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -18,12 +22,20 @@ public class FirstToThird : MonoBehaviour
                 cameraController.isFirstUnlockFrame = true;
                 cameraController.currentMode = CameraController.CameraMode.ThirdPerson;
                 cameraController.viewLocked = false;
-                this.enabled = false; // Disable this script after switching to third person
+                StartCoroutine(ShowText());
             }
             else
             {
                 Debug.LogWarning("CameraController not found on player!");
             }
         }
+    }
+
+    private IEnumerator ShowText()
+    {
+        _text.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        _text.gameObject.SetActive(false);
+        enabled = false; // Disable this script after showing the text
     }
 }

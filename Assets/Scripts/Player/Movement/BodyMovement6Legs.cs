@@ -22,7 +22,6 @@ public class BodyMovement6Legs : MonoBehaviour
     [SerializeField][Tooltip("Suprafata pe care se poate deplasa.")] 
     private LayerMask _walkableLayer;
 
-
     [SerializeField] private float _castPositionsAdvance;
     [SerializeField] private float _desiredGroundClearance;
     [SerializeField] private float _castSphereRadius;
@@ -97,6 +96,13 @@ public class BodyMovement6Legs : MonoBehaviour
         }
 
         _targetLocation += _externalForce;
+
+        if (IsDirectionBlocked(_targetLocation - transform.position) || IsDirectionBlocked(_targetLocation - transform.position - Vector3.right * 0.3f) || IsDirectionBlocked(_targetLocation - transform.position + Vector3.right * 0.3f))
+        {
+            _targetLocation = transform.position;
+            _targetRotation = transform.rotation;
+        }
+        
         if (_lastPosition != transform.position || _input.x != 0)
         {
             _moved = true;
@@ -114,16 +120,18 @@ public class BodyMovement6Legs : MonoBehaviour
     private void FixedUpdate()
     {
 
-        transform.position = Vector3.MoveTowards(transform.position, _targetLocation, _speed * Time.fixedDeltaTime);
-
-        _externalForce = Vector3.zero;
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _flipSpeed * Time.fixedDeltaTime);
-
-        transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime,0);
-
         if (!_grounded)
             ApplyGravity();
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _targetLocation, _speed * Time.fixedDeltaTime);
+
+            _externalForce = Vector3.zero;
+
+            transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime, 0);
+
+        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _flipSpeed * Time.fixedDeltaTime);
     }
 
     private RaycastHit CheckBetween(Vector3 pointA, Vector3 pointB)
@@ -146,7 +154,7 @@ public class BodyMovement6Legs : MonoBehaviour
 
     private void ApplyGravity()
     {
-        transform.position += Physics.gravity * Time.fixedDeltaTime * _rigidbody.mass;
+        transform.position += Physics.gravity * Time.fixedDeltaTime * _rigidbody.mass / 2;
     }
 
     private void VerifyOnTerrain()
@@ -156,7 +164,6 @@ public class BodyMovement6Legs : MonoBehaviour
         if (hit.collider)
         {
             _grounded = true;
-
         }
         else
         {
@@ -187,6 +194,17 @@ public class BodyMovement6Legs : MonoBehaviour
     public void ApplyExternalForce(Vector3 force)
     {
         _externalForce += force;
+    }
+    bool IsDirectionBlocked(Vector3 direction)
+    {
+        RaycastHit hit;
+        Physics.SphereCast(transform.position, 1, direction.normalized, out hit, 2, ~_walkableLayer & ~(1 << gameObject.layer), QueryTriggerInteraction.Ignore);
+        Debug.DrawRay(transform.position, direction.normalized * 2, hit.collider ? Color.green : Color.red);
+        if (hit.collider)
+        {
+            return true;
+        }
+        return false;
     }
 }
 
