@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
     private Camera mainCamera;
     private float xRotation;
     private float yRotation;
-    private bool isFirstUnlockFrame = false;
+    public bool isFirstUnlockFrame = false;
     private Vector3 targetThirdPersonOffset;
     private Vector3 currentThirdPersonOffset;
     private bool isAvoidingObstacle = false;
