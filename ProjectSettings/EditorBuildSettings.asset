@@ -9,20 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapter1_ToxicLove/0_MainMenu.unity
     guid: 880ce0214a3984347830159027a6646e
   - enabled: 1
-    path: Assets/Scenes/Chapter1_ToxicLove/1_Garden with mirror.unity
-    guid: 34536ea360d6d6841a0c894ee8732190
-  - enabled: 0
     path: Assets/Scenes/Chapter1_ToxicLove/1_Garden.unity
-    guid: 6c2e3eac610452c4d9a5dc1bd8a80c37
-  - enabled: 0
-    path: Assets/Others/OutdoorsScene.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
-  - enabled: 0
-    path: Assets/Scenes/Chapter1_ToxicLove/others/3_Garden_Smooth.unity
-    guid: 1b2f173cf1d9840438d9fa6521154533
+    guid: 34536ea360d6d6841a0c894ee8732190
   - enabled: 1
     path: Assets/Scenes/Chapter1_ToxicLove/2_Tunnel_Labirinth.unity
     guid: 4bf7bb9c70593ca479abfcb857782e6f
+  - enabled: 1
+    path: Assets/Scenes/Chapter1_ToxicLove/3_House.unity
+    guid: 507bd0c244c332d42899c1956aa66521
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0
