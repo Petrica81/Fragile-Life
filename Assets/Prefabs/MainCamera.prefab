@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
-  viewLocked: 0
+  viewLocked: 1
   player: {fileID: 0}
-  switchSmoothness: 5
+  switchSmoothness: 10
   returnSpeed: 2
   autoRotationSpeed: 5
   firstPersonOffset: {x: 0, y: -0.3, z: 0.5}
@@ -260,3 +260,4 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 319
+  isFirstUnlockFrame: 0

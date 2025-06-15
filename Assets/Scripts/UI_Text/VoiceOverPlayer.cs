@@ -6,7 +6,7 @@ public class VoiceOverPlayer : MonoBehaviour
 {
     [Header("Voice Over")]
     public AudioClip voiceOverClip;
-    [Range(0.1f, 3f)] public float pitchVariation = 0.1f;
+    [Range(0f, 3f)] public float pitchVariation = 0.0f;
 
     private AudioSource _audioSource;
     private TMP_Text _text;

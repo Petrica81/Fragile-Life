@@ -22,7 +22,6 @@ public class BodyMovement6Legs : MonoBehaviour
     [SerializeField][Tooltip("Suprafata pe care se poate deplasa.")] 
     private LayerMask _walkableLayer;
 
-
     [SerializeField] private float _castPositionsAdvance;
     [SerializeField] private float _desiredGroundClearance;
     [SerializeField] private float _castSphereRadius;
@@ -39,6 +38,7 @@ public class BodyMovement6Legs : MonoBehaviour
     private Vector3 _forward;
     private Vector3 _lastHit = Vector3.zero;
     private Quaternion _startRotation;
+    private Vector3 _lastPosition;
     [HideInInspector]
     public bool _moved = false;
 
@@ -47,6 +47,7 @@ public class BodyMovement6Legs : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _targetLocation = transform.position;
         _startRotation = transform.rotation;
+        _lastPosition = transform.position;
         _speed = _baseSpeed;
         _externalForce = Vector3.zero;
     }
@@ -72,14 +73,13 @@ public class BodyMovement6Legs : MonoBehaviour
         {
             _targetRotation = _startRotation;
         }
+        else
+        { 
+            _targetRotation = transform.rotation; 
+        }
         _flipSpeed = _speed * 0.75f;
         _input = new Vector2(horizontal, vertical);
 
-        //raycast pentru a verifica daca se poate merge in fata
-
-        _targetRotation = transform.rotation;
-
-        Vector3 lastTargetLocation = _targetLocation;
         RaycastHit hit_fu = CheckBetween(_above, _forward);
         RaycastHit hit_fb = CheckBetween(_forward, _below);
         if (hit_fu.collider && _input.y > 0.1f && Vector3.Distance(hit_fu.point, _lastHit) > 0.2f)
@@ -96,7 +96,14 @@ public class BodyMovement6Legs : MonoBehaviour
         }
 
         _targetLocation += _externalForce;
-        if (lastTargetLocation != _targetLocation)
+
+        if (IsDirectionBlocked(_targetLocation - transform.position) || IsDirectionBlocked(_targetLocation - transform.position - Vector3.right * 0.3f) || IsDirectionBlocked(_targetLocation - transform.position + Vector3.right * 0.3f))
+        {
+            _targetLocation = transform.position;
+            _targetRotation = transform.rotation;
+        }
+        
+        if (_lastPosition != transform.position || _input.x != 0)
         {
             _moved = true;
         }
@@ -105,6 +112,7 @@ public class BodyMovement6Legs : MonoBehaviour
             _moved = false;
         }
 
+        _lastPosition = transform.position;
         VerifyOnTerrain();
 
     }
@@ -112,16 +120,18 @@ public class BodyMovement6Legs : MonoBehaviour
     private void FixedUpdate()
     {
 
-        transform.position = Vector3.MoveTowards(transform.position, _targetLocation, _speed * Time.fixedDeltaTime);
-
-        _externalForce = Vector3.zero;
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _flipSpeed * Time.fixedDeltaTime);
-
-        transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime,0);
-
         if (!_grounded)
             ApplyGravity();
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _targetLocation, _speed * Time.fixedDeltaTime);
+
+            _externalForce = Vector3.zero;
+
+            transform.Rotate(0, _input.x * _turnSpeed * Time.fixedDeltaTime, 0);
+
+        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _flipSpeed * Time.fixedDeltaTime);
     }
 
     private RaycastHit CheckBetween(Vector3 pointA, Vector3 pointB)
@@ -144,7 +154,7 @@ public class BodyMovement6Legs : MonoBehaviour
 
     private void ApplyGravity()
     {
-        transform.position += Physics.gravity * Time.fixedDeltaTime * _rigidbody.mass;
+        transform.position += Physics.gravity * Time.fixedDeltaTime * _rigidbody.mass / 2;
     }
 
     private void VerifyOnTerrain()
@@ -154,7 +164,6 @@ public class BodyMovement6Legs : MonoBehaviour
         if (hit.collider)
         {
             _grounded = true;
-
         }
         else
         {
@@ -185,6 +194,17 @@ public class BodyMovement6Legs : MonoBehaviour
     public void ApplyExternalForce(Vector3 force)
     {
         _externalForce += force;
+    }
+    bool IsDirectionBlocked(Vector3 direction)
+    {
+        RaycastHit hit;
+        Physics.SphereCast(transform.position, 1, direction.normalized, out hit, 2, ~_walkableLayer & ~(1 << gameObject.layer), QueryTriggerInteraction.Ignore);
+        Debug.DrawRay(transform.position, direction.normalized * 2, hit.collider ? Color.green : Color.red);
+        if (hit.collider)
+        {
+            return true;
+        }
+        return false;
     }
 }
 
