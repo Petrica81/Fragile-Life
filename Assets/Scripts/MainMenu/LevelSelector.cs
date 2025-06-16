@@ -101,4 +101,9 @@ public class LevelSelector : MonoBehaviour
             AudioSource.PlayClipAtPoint(navigationSound, Camera.main.transform.position);
         }
     }
+
+    public void GoToFirstLevel()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
